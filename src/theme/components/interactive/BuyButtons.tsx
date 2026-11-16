@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { AddToCart, BuyNow, Link, TextField, useStorefront, type GiftRecipient, type ProductPage } from '@dripfunnel/storefront-core/theme'
 import shop from '../../styles/shop.module.css'
 import styles from '../../styles/product.module.css'
+import { MinusIcon, PlusIcon } from '../Icons'
 import { WishlistHeart } from './WishlistHeart'
 
 const emailLike = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -12,12 +13,17 @@ const emailLike = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
  * Add to cart and Buy now for the chosen version; both wait until every option is chosen and the version is in stock.
  * A gift card asks for its recipient first, as D1's gift card page does; a download or a service says what the shopper gets.
  */
-export const BuyButtons = ({ page }: { page: ProductPage }) => {
+export const BuyButtons = ({ page, heart = true }: { page: ProductPage; heart?: boolean }) => {
   const { t } = useStorefront()
   const [addedId, setAddedId] = useState<string | null>(null)
   const [failed, setFailed] = useState(false)
   const [gift, setGift] = useState<GiftRecipient>({ recipientName: '', recipientEmail: '', sendOn: '', message: '' })
+  const [quantity, setQuantity] = useState(1)
   const version = page.version
+  // As many as the catalogue says are left, when it says; otherwise a sensible ceiling for one order line.
+  const most = Math.max(1, Math.min(version?.stock.available ?? 99, 99))
+  const count = Math.min(quantity, most)
+  const qtyLabel = useId()
   const kind = page.product?.kind
   const isGift = kind?.kind === 'gift_card'
   const giftReady = gift.recipientName.trim() !== '' && emailLike.test(gift.recipientEmail.trim())
@@ -61,6 +67,22 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
           {t('shop.product.gift.needed')}
         </p>
       ) : null}
+      {isGift ? null : (
+        <div className={styles.qty} role="group" aria-labelledby={qtyLabel}>
+          <span id={qtyLabel} className={styles.qtyLabel}>
+            {t('shop.product.quantity')}
+          </span>
+          <button type="button" className={styles.qtyButton} aria-label={t('shop.product.less')} disabled={count <= 1} onClick={() => setQuantity(Math.max(1, count - 1))}>
+            <MinusIcon className={styles.qtyIcon} />
+          </button>
+          <span className={styles.qtyValue} aria-live="polite">
+            {count}
+          </span>
+          <button type="button" className={styles.qtyButton} aria-label={t('shop.product.more')} disabled={count >= most} onClick={() => setQuantity(Math.min(most, count + 1))}>
+            <PlusIcon className={styles.qtyIcon} />
+          </button>
+        </div>
+      )}
       {inCart ? (
         <Link href="/cart/" className={shop.primary} ref={goToCart}>
           {t('shop.product.goToCart')}
@@ -68,6 +90,7 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
       ) : (
         <AddToCart
           versionId={version?.id ?? null}
+          quantity={isGift ? 1 : count}
           disabled={!buyable}
           gift={isGift ? gift : null}
           describedBy={waitsForRecipient ? why : undefined}
@@ -83,11 +106,11 @@ export const BuyButtons = ({ page }: { page: ProductPage }) => {
         </AddToCart>
       )}
       {isGift ? null : (
-        <BuyNow versionId={version?.id ?? null} disabled={!buyable} className={shop.secondary} onDone={(bought) => setFailed(!bought)}>
+        <BuyNow versionId={version?.id ?? null} quantity={count} disabled={!buyable} className={shop.secondary} onDone={(bought) => setFailed(!bought)}>
           {t('shop.product.buyNow')}
         </BuyNow>
       )}
-      {page.product ? <WishlistHeart productId={page.product.id} name={page.product.name} versionId={version?.id ?? null} /> : null}
+      {heart && page.product ? <WishlistHeart productId={page.product.id} name={page.product.name} versionId={version?.id ?? null} /> : null}
       {failed || added ? (
         <p className={styles.added} role="status">
           {failed ? t('shop.product.addFailed') : t('shop.product.added')}

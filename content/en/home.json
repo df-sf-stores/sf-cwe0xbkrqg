@@ -215,5 +215,16 @@
     "alt1": "{store} 1.5 HP 2-in-1 flour mill",
     "alt2": "{store} 2 HP 2-in-1 flour mill",
     "alt3": "{store} Standard Model flour mill"
+  },
+  "categories": {
+    "title": "Shop by Category",
+    "lead": "Browse every {store} machine range — open a category to see its models, live prices and stock.",
+    "action": "View all machines",
+    "view": "Explore"
+  },
+  "compare": {
+    "title": "Compare Models",
+    "lead": "The {store} range side by side, with live prices and availability from our catalogue.",
+    "action": "Compare all models"
   }
 }

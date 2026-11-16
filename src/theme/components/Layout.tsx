@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
-import { ConsentBanner, ConsentSettingsButton, Link, PoweredBy, PreviewBanner, ThemeImage, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ConsentBanner, Link, PoweredBy, PreviewBanner, ThemeImage, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { QrCode } from './Art'
 import { useBrand } from './brand'
+import { cx } from './cx'
 import { CtaBand } from './Sections'
 import { FooterColumn } from './interactive/FooterColumn'
 import { CartIcon, ChatIcon, HomeIcon, LockIcon, MailIcon, PhoneIcon, PinIcon, SearchIcon, StoreIcon, TruckIcon, UserIcon } from './Icons'
@@ -78,7 +79,7 @@ export const Layout = ({ children, cta = true }: { children: ReactNode; cta?: bo
               <p className={styles.footerNote}>{t('site.footer.about', { store: brand.name })}</p>
             </div>
             <div className={styles.footerColumns}>
-              <FooterColumn title={t('site.footer.shop')}>
+              <FooterColumn title={t('site.footer.shop')} tone="blue">
                 <li>
                   <Link href="/" className={styles.footerLink}>
                     {t('site.footer.home')}
@@ -95,7 +96,7 @@ export const Layout = ({ children, cta = true }: { children: ReactNode; cta?: bo
                   </Link>
                 </li>
               </FooterColumn>
-              <FooterColumn title={t('site.footer.company')}>
+              <FooterColumn title={t('site.footer.company')} tone="green">
                 <li>
                   <Link href="/about/" className={styles.footerLink}>
                     {t('site.footer.about2')}
@@ -122,7 +123,7 @@ export const Layout = ({ children, cta = true }: { children: ReactNode; cta?: bo
                   </Link>
                 </li>
               </FooterColumn>
-              <FooterColumn title={t('site.footer.customer')}>
+              <FooterColumn title={t('site.footer.customer')} tone="orange">
                 <li>
                   <Link href="/account/" className={styles.footerLink}>
                     {t('site.footer.account')}
@@ -149,76 +150,71 @@ export const Layout = ({ children, cta = true }: { children: ReactNode; cta?: bo
                   </Link>
                 </li>
               </FooterColumn>
-              <div className={styles.contactColumn}>
-                <h2 className={styles.columnHeading}>{t('site.footer.contact')}</h2>
-                <ul className={styles.contactList}>
-                  {brand.hasPhone ? (
-                    <>
-                      <li>
-                        <Link href={brand.tel} className={styles.contactItem}>
-                          <PhoneIcon className={styles.contactIcon} />
-                          <span>
-                            <span className={styles.contactLabel}>{t('site.footer.phone')}</span>
-                            {brand.phone}
-                          </span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={brand.whatsapp} className={styles.contactItem}>
-                          <ChatIcon className={styles.contactIcon} />
-                          <span>
-                            <span className={styles.contactLabel}>{t('site.footer.whatsapp')}</span>
-                            {brand.phone}
-                          </span>
-                        </Link>
-                      </li>
-                    </>
-                  ) : null}
-                  <li className={styles.contactItem}>
-                    <MailIcon className={styles.contactIcon} />
-                    <span>
-                      <span className={styles.contactLabel}>{t('site.footer.email')}</span>
-                      <span className={styles.contactLine}>{brand.email}</span>
-                      <span className={styles.contactLine}>{brand.secondEmail}</span>
-                    </span>
+            </div>
+          </div>
+          <div className={styles.contactCard}>
+            <h2 className={cx(styles.columnHeading, styles.toneOrange)}>{t('site.footer.contact')}</h2>
+            <ul className={styles.contactList}>
+              {brand.hasPhone ? (
+                <>
+                  <li>
+                    <Link href={brand.tel} className={styles.contactItem}>
+                      <PhoneIcon className={styles.contactIcon} />
+                      <span>
+                        <span className={styles.contactLabel}>{t('site.footer.phone')}</span>
+                        {brand.phone}
+                      </span>
+                    </Link>
                   </li>
-                  {brand.address ? (
-                    <li>
-                      <Link href={brand.maps} className={styles.contactItem}>
-                        <PinIcon className={styles.contactIcon} />
-                        <span>
-                          <span className={styles.contactLabel}>{t('site.footer.address')}</span>
-                          {brand.address}
-                        </span>
-                      </Link>
-                    </li>
-                  ) : null}
-                </ul>
-                <div className={styles.qrRow}>
-                  <Link href={brand.website} className={styles.qr}>
-                    <QrCode className={styles.qrCode} />
-                    <span className={styles.hidden}>{t('site.footer.qr')}</span>
+                  <li>
+                    <Link href={brand.whatsapp} className={styles.contactItem}>
+                      <ChatIcon className={styles.contactIcon} />
+                      <span>
+                        <span className={styles.contactLabel}>{t('site.footer.whatsapp')}</span>
+                        {brand.phone}
+                      </span>
+                    </Link>
+                  </li>
+                </>
+              ) : null}
+              <li className={styles.contactItem}>
+                <MailIcon className={styles.contactIcon} />
+                <span>
+                  <span className={styles.contactLabel}>{t('site.footer.email')}</span>
+                  <span className={styles.contactLine}>{brand.email}</span>
+                  <span className={styles.contactLine}>{brand.secondEmail}</span>
+                </span>
+              </li>
+              {brand.address ? (
+                <li>
+                  <Link href={brand.maps} className={styles.contactItem}>
+                    <PinIcon className={styles.contactIcon} />
+                    <span>
+                      <span className={styles.contactLabel}>{t('site.footer.address')}</span>
+                      {brand.address}
+                    </span>
                   </Link>
-                  <DemoButton className={styles.footerDemo}>{t('site.footer.demo')}</DemoButton>
-                </div>
-              </div>
+                </li>
+              ) : null}
+            </ul>
+            <div className={styles.qrRow}>
+              <Link href={brand.website} className={styles.qr}>
+                <QrCode className={styles.qrCode} />
+                <span className={styles.hidden}>{t('site.footer.qr')}</span>
+              </Link>
+              <DemoButton className={styles.footerDemo}>{t('site.footer.demo')}</DemoButton>
             </div>
           </div>
           <p className={styles.promoted}>{t('site.footer.promoted')}</p>
           {/* The bottom bar is the footer's last child, so it shares the footer's background with no seam. */}
           <div className={styles.baseInner}>
             <p className={styles.copyright}>{t('site.footer.rights', { store: brand.name, city: brand.city, region: brand.region })}</p>
+            {/* Powered by and DripFunnel's logo: core's sealed line when the platform asks for it (a required part then), else the theme's own words. */}
             <div className={styles.baseEnd}>
-              <ConsentSettingsButton t={t} className={styles.cookies} />
-              {poweredBy ? (
-                <>
-                  <span className={styles.divider} aria-hidden="true" />
-                  <PoweredBy brand={poweredBy} t={t} className={styles.powered} />
-                  <Link href={t('site.links.dripfunnel')} className={styles.brandLink}>
-                    <ThemeImage src="dripfunnel-logo-white.png" alt={t('site.footer.dripfunnelLink')} ratio={2077 / 369} sizes="104px" className={styles.brandLogo} />
-                  </Link>
-                </>
-              ) : null}
+              {poweredBy ? <PoweredBy brand={poweredBy} t={t} className={styles.powered} /> : <span className={styles.poweredLabel}>{t('site.footer.poweredBy')}</span>}
+              <Link href={t('site.links.dripfunnel')} className={styles.brandLink}>
+                <ThemeImage src="dripfunnel-logo-white.png" alt={t('site.footer.dripfunnelLink')} ratio={2077 / 369} sizes="(min-width: 1024px) 112px, 104px" className={styles.brandLogo} />
+              </Link>
             </div>
           </div>
         </footer>

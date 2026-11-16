@@ -1,5 +1,6 @@
-import { Link, Price, ThemeImage, useCollections, useHead, useListing, useProducts, useStorefront, type ProductCard as Card } from '@dripfunnel/storefront-core/theme'
-import { slugOf } from '../components/slugOf'
+import { Image, Link, Price, ThemeImage, useHead, useStorefront, type ProductCard as Card } from '@dripfunnel/storefront-core/theme'
+import { CompareTable } from '../components/CompareTable'
+import { useMachines } from '../components/machines'
 import { WheatEar } from '../components/Art'
 import { useBrand } from '../components/brand'
 import { cx } from '../components/cx'
@@ -19,16 +20,8 @@ const flagshipOf = (products: Card[]) => products.find((p) => /1[.,]?5\s*hp/i.te
 export const HomePage = () => {
   const { store, locale, t } = useStorefront()
   const brand = useBrand()
-  const catalogue = useProducts({ sort: 'name', first: 24 })
   useHead({ title: t('home.seoTitle', { store: brand.name }), description: t('home.seoDescription', { store: brand.name }), canonical: '/' })
-  // The store's first collection when it has one (Storefront › Collections); until then, its atta chakki and flour mills by name.
-  const { collections } = useCollections({ first: 20 })
-  const first = collections[0]
-  const listing = useListing({ collection: first ? slugOf(first) : null }, first !== undefined)
-  const machines = first ? listing.items : catalogue.products
-  const featured = first ? machines : machines.filter((p) => /chakki|flour\s*mill/i.test(p.name))
-  const shown = featured.length ? featured : machines
-  const collectionHref = first?.href ?? '/shop/'
+  const { collections, collectionHref, models: shown, named: featured, loading } = useMachines()
   const flagship = flagshipOf(shown)
   const flagshipOff = flagship ? percentOff(flagship.price, flagship.compareAt) : null
   const why = [
@@ -48,8 +41,9 @@ export const HomePage = () => {
   const actions = (
     <>
       <DemoPill>{t('home.hero.demo')}</DemoPill>
-      <Link href={collectionHref} className={pill('outline')}>
+      <Link href={collectionHref} className={pill('blue')}>
         {t('home.hero.view')}
+        <LinkArrow />
       </Link>
     </>
   )
@@ -70,9 +64,13 @@ export const HomePage = () => {
         actions={actions}
       />
 
-      <section className={cx(s.section, s.reveal)}>
+      <section className={styles.trust} aria-labelledby="home-why">
+        <WheatEar className={styles.trustWheatLeft} />
+        <WheatEar className={styles.trustWheatRight} />
         <div className={s.container}>
-          <SectionHead title={t('home.why.title', { store: brand.name })} wheat />
+          <h2 id="home-why" className={s.hidden}>
+            {t('home.why.title', { store: brand.name })}
+          </h2>
           <ul className={styles.why}>
             {why.map((w) => (
               <li key={w.key} className={styles.whyCard}>
@@ -87,8 +85,8 @@ export const HomePage = () => {
 
       <section className={cx(s.section, s.tinted, s.reveal)}>
         <div className={s.container}>
-          <SectionHead align="start" title={t('home.featured.title')} lead={t('home.featured.lead', { store: brand.name })} action={<Link href="/shop/" className={pill()}>{t('home.featured.action')}</Link>} />
-          {(first ? listing.status : catalogue.status) === 'loading' ? (
+          <SectionHead align="start" title={t('home.featured.title')} lead={t('home.featured.lead', { store: brand.name })} action={<Link href="/shop/" className={pill('outline')}>{t('home.featured.action')}</Link>} />
+          {loading ? (
             <GridPlaceholder label={t('shop.listing.loading')} count={4} />
           ) : shown.length ? (
             <ul className={s.rail} aria-label={t('home.featured.title')}>
@@ -104,7 +102,34 @@ export const HomePage = () => {
         </div>
       </section>
 
-      <section className={cx(s.section, s.reveal)}>
+      {collections.length ? (
+        <section className={cx(s.section, s.reveal)}>
+          <div className={s.container}>
+            <SectionHead align="start" title={t('home.categories.title')} lead={t('home.categories.lead', { store: brand.name })} action={<Link href="/shop/" className={textLink}>{t('home.categories.action')}<LinkArrow /></Link>} />
+            <ul className={styles.categories}>
+              {collections.slice(0, 8).map((c) => (
+                <li key={c.id}>
+                  <Link href={c.href} className={styles.category}>
+                    <span className={styles.categoryPicture}>
+                      {c.image ? <Image image={c.image} alt="" ratio={4 / 3} sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" className={styles.categoryImage} /> : <span className={styles.categoryInitial} aria-hidden="true">{c.name.slice(0, 1)}</span>}
+                    </span>
+                    <span className={styles.categoryText}>
+                      <span className={styles.categoryName}>{c.name}</span>
+                      {c.description ? <span className={styles.categoryBody}>{c.description}</span> : null}
+                      <span className={styles.categoryMore}>
+                        {t('home.categories.view')}
+                        <LinkArrow />
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      <section className={cx(s.section, s.tintBlue, s.reveal)}>
         <div className={cx(s.container, styles.flagship)}>
           <div className={styles.flagshipGallery}>
             <figure className={styles.flagshipMain}>
@@ -162,7 +187,7 @@ export const HomePage = () => {
         </div>
       </section>
 
-      <section className={cx(s.section, s.tinted, s.reveal)}>
+      <section className={cx(s.section, s.tintGreen, s.reveal)}>
         <div className={cx(s.container, styles.demo)}>
           <div className={styles.demoCopy}>
             <SectionHead align="start" title={t('home.homeDemo.title', { store: brand.name })} lead={t('home.homeDemo.lead')} />
@@ -205,9 +230,9 @@ export const HomePage = () => {
 
       <SmartFeatures />
 
-      <section className={cx(s.section, s.tinted, s.reveal)}>
+      <section className={cx(s.section, s.reveal)}>
         <div className={s.container}>
-          <SectionHead align="start" title={t('home.designed.title')} lead={t('home.designed.lead', { store: brand.name })} action={<Link href={collectionHref} className={pill()}>{t('home.designed.action')}</Link>} />
+          <SectionHead align="start" title={t('home.designed.title')} lead={t('home.designed.lead', { store: brand.name })} action={<Link href={collectionHref} className={textLink}>{t('home.designed.action')}</Link>} />
           <ul className={styles.designed}>
             {designed.map((d) => (
               <li key={d.key}>
@@ -240,7 +265,7 @@ export const HomePage = () => {
 
       <WhyFamilies />
 
-      <section className={cx(s.section, s.reveal)}>
+      <section className={cx(s.section, s.tintOrange, s.reveal)}>
         <div className={s.container}>
           <SectionHead align="start" title={t('home.built.title')} lead={t('home.built.lead', { store: brand.name })} action={<Link href="/manufacturing/" className={textLink}>
 {t('home.built.action')}
@@ -270,6 +295,14 @@ export const HomePage = () => {
           <WheatEar className={styles.builtWheat} />
         </div>
       </section>
+      {shown.length > 1 ? (
+        <section className={cx(s.section, s.reveal)}>
+          <div className={s.container}>
+            <SectionHead align="start" title={t('home.compare.title')} lead={t('home.compare.lead', { store: brand.name })} action={<Link href="/compare/" className={pill('outline')}>{t('home.compare.action')}<LinkArrow /></Link>} />
+            <CompareTable models={shown.slice(0, 4)} label={t('home.compare.title')} />
+          </div>
+        </section>
+      ) : null}
     </Layout>
   )
 }

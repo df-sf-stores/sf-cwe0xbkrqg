@@ -1,40 +1,13 @@
-.band {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 48px 16px;
-  border-bottom: 1px solid rgb(179 165 147 / 30%);
-  background: rgb(242 239 234 / 40%);
-  text-align: center;
-}
-
-.title {
-  margin: 0;
-  color: var(--accent);
-  font-family: var(--heading-font);
-  font-size: 30px;
-  font-weight: var(--heading-weight);
-  line-height: 1.2;
-  overflow-wrap: anywhere;
-  text-wrap: balance;
-}
-
-.rule {
-  width: 64px;
-  height: 1px;
-  background: var(--taupe);
-}
-
+/* The policy's words at a readable measure, aligned with the title band above. */
 .article {
   display: flex;
   box-sizing: border-box;
-  width: min(100%, 768px);
+  width: min(100%, 1344px);
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   margin-inline: auto;
-  padding: 48px 16px;
-  color: var(--muted);
+  padding: 40px 16px 72px;
+  color: var(--ink-soft);
   font-size: 16px;
   line-height: 1.75;
 }
@@ -94,5 +67,24 @@
 
   .article {
     padding: 64px 32px;
+  }
+}
+
+.heading,
+.paragraph,
+.list,
+.contact {
+  max-width: 760px;
+}
+
+@media (min-width: 768px) {
+  .article {
+    padding: 48px 24px 88px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article {
+    padding: 56px 32px 104px;
   }
 }

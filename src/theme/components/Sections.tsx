@@ -3,7 +3,7 @@ import { Link, ThemeImage, useStorefront } from '@dripfunnel/storefront-core/the
 import { WheatEar } from './Art'
 import { useBrand } from './brand'
 import { cx } from './cx'
-import { ArrowRight, ChatIcon, CheckCircle, CpuIcon, CylinderIcon, RefreshIcon, ShieldIcon, ThermometerIcon, ZapIcon } from './Icons'
+import { ArrowRight, ChatIcon, CheckCircle, CpuIcon, CylinderIcon, HeadsetIcon, RefreshIcon, ShieldIcon, ThermometerIcon, WheatIcon, ZapIcon } from './Icons'
 import { DemoButton } from './interactive/Demo'
 import { Lightbox } from './interactive/Lightbox'
 import styles from '../styles/sections.module.css'
@@ -26,7 +26,7 @@ export const SectionHead = ({ title, lead, action, wheat = false, align = 'cente
 }
 
 /** The pill buttons every section uses, for core's <Link> or a button: brand colour, outlined, light for dark bands, WhatsApp green. */
-export const pill = (tone: 'primary' | 'outline' | 'light' | 'whatsapp' = 'primary') => cx(styles.button, styles[tone])
+export const pill = (tone: 'primary' | 'blue' | 'outline' | 'light' | 'whatsapp' | 'soft' = 'primary') => cx(styles.button, styles[tone])
 
 /** A text link with an arrow: put <LinkArrow /> after the words inside core's <Link className={textLink}>. */
 export const textLink = styles.textLink
@@ -39,7 +39,7 @@ export const DemoPill = ({ children, tone = 'primary', product }: { children: Re
   </DemoButton>
 )
 
-export const WhatsAppPill = ({ children, tone = 'whatsapp' }: { children: ReactNode; tone?: 'whatsapp' | 'light' | 'outline' }) => {
+export const WhatsAppPill = ({ children, tone = 'soft' }: { children: ReactNode; tone?: 'whatsapp' | 'light' | 'outline' | 'soft' }) => {
   const brand = useBrand()
   if (!brand.hasPhone) return null
   return (
@@ -77,7 +77,7 @@ export const Steps = ({ steps, columns }: { steps: { title: string; body: string
   </ol>
 )
 
-/** "Ready for fresh atta at home?": the dark brown band above every page's footer. */
+/** "Ready for fresh atta at home?": the light band above every page's footer, with the logo's three colours along its foot. */
 export const CtaBand = () => {
   const { t } = useStorefront()
   const brand = useBrand()
@@ -91,15 +91,15 @@ export const CtaBand = () => {
         </div>
         <div className={styles.actions}>
           <DemoPill>{t('site.cta.demo')}</DemoPill>
-          <WhatsAppPill tone="light">{t('site.cta.whatsapp')}</WhatsAppPill>
+          <WhatsAppPill>{t('site.cta.whatsapp')}</WhatsAppPill>
         </div>
       </div>
     </section>
   )
 }
 
-/** "Smart Features in Every … Atta Chakki": six icon cards. */
-export const SmartFeatures = () => {
+/** "Smart Features in Every … Atta Chakki": six icon cards; `compact`, a heading to one side and three short cards a row (About). */
+export const SmartFeatures = ({ compact = false }: { compact?: boolean }) => {
   const { t } = useStorefront()
   const brand = useBrand()
   const features = [
@@ -113,8 +113,8 @@ export const SmartFeatures = () => {
   return (
     <section className={cx(styles.section, styles.reveal)}>
       <div className={styles.container}>
-        <SectionHead title={t('home.smart.title', { store: brand.name })} lead={t('home.smart.lead', { store: brand.name })} />
-        <ul className={styles.features}>
+        <SectionHead align={compact ? 'start' : 'center'} title={t('home.smart.title', { store: brand.name })} lead={t('home.smart.lead', { store: brand.name })} />
+        <ul className={compact ? styles.featuresCompact : styles.features}>
           {features.map((f) => (
             <li key={f.key} className={styles.feature}>
               <span className={styles.featureBadge}>{f.icon}</span>
@@ -127,13 +127,13 @@ export const SmartFeatures = () => {
   )
 }
 
-/** "See the Machine Up Close": three real photos that open larger. */
-export const UpClose = ({ tinted = false }: { tinted?: boolean }) => {
+/** "See the Machine Up Close": three real photos that open larger; the heading centred, or to one side with `align`. */
+export const UpClose = ({ tinted = false, align = 'center' }: { tinted?: boolean; align?: 'center' | 'start' }) => {
   const { t } = useStorefront()
   return (
     <section className={cx(styles.section, tinted && styles.tinted, styles.reveal)}>
       <div className={styles.container}>
-        <SectionHead title={t('home.upClose.title')} lead={t('home.upClose.lead')} />
+        <SectionHead align={align} title={t('home.upClose.title')} lead={t('home.upClose.lead')} />
         <Lightbox
           photos={[
             { key: 'chamber', caption: t('home.upClose.chamber'), image: <ThemeImage src="live-3.webp" alt={t('home.upClose.chamber')} ratio={760 / 1013} sizes="(min-width: 768px) 33vw, 100vw" /> },
@@ -146,8 +146,11 @@ export const UpClose = ({ tinted = false }: { tinted?: boolean }) => {
   )
 }
 
-/** "Why Families Choose …": the standard model's photo beside six numbered reasons. */
-export const WhyFamilies = () => {
+/**
+ * "Why Families Choose …": the standard model's photo beside six numbered reasons, or with `grid` the six reasons alone in
+ * a ruled three-column grid, each with its icon (About).
+ */
+export const WhyFamilies = ({ grid = false }: { grid?: boolean }) => {
   const { t } = useStorefront()
   const brand = useBrand()
   const reasons = [
@@ -158,6 +161,25 @@ export const WhyFamilies = () => {
     { key: 'r5', title: t('home.families.r5.title'), body: t('home.families.r5.body') },
     { key: 'r6', title: t('home.families.r6.title'), body: t('home.families.r6.body', { store: brand.name }) },
   ]
+  if (grid) {
+    const icons = [<WheatIcon key="r1" className={styles.reasonIcon} />, <ZapIcon key="r2" className={styles.reasonIcon} />, <ShieldIcon key="r3" className={styles.reasonIcon} />, <RefreshIcon key="r4" className={styles.reasonIcon} />, <ThermometerIcon key="r5" className={styles.reasonIcon} />, <HeadsetIcon key="r6" className={styles.reasonIcon} />]
+    return (
+      <section className={cx(styles.section, styles.reveal)}>
+        <div className={styles.container}>
+          <SectionHead align="start" title={t('home.families.title', { store: brand.name })} lead={t('home.families.lead')} />
+          <ul className={styles.reasonGrid}>
+            {reasons.map((r, index) => (
+              <li key={r.key} className={styles.reasonCell}>
+                <span className={styles.reasonBadge}>{icons[index]}</span>
+                <h3 className={styles.reasonTitle}>{r.title}</h3>
+                <p className={styles.reasonBody}>{r.body}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
   return (
     <section className={cx(styles.section, styles.tinted, styles.reveal)}>
       <div className={cx(styles.container, styles.split)}>

@@ -3,21 +3,14 @@
 import { useState } from 'react'
 import { cx } from '../cx'
 import { CodeField, EditAnswers, Image, LineAnswers, Link, OrderSummary, Price, useCart, useStorefront, type CartLine } from '@dripfunnel/storefront-core/theme'
+import { MinusIcon, PlusIcon } from '../Icons'
 import { Notice } from '../Notice'
 import { Retry } from './Retry'
 import shop from '../../styles/shop.module.css'
 import styles from '../../styles/cart.module.css'
 
-const Minus = () => (
-  <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M6 12h12" />
-  </svg>
-)
-const Plus = () => (
-  <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M6 12h12M12 6v12" />
-  </svg>
-)
+const Minus = () => <MinusIcon className={styles.icon} />
+const Plus = () => <PlusIcon className={styles.icon} />
 
 /** The cart page's body: its lines, the engine's summary, codes and the way to checkout, with each state it can be in. */
 export const CartView = () => {

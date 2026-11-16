@@ -77,7 +77,8 @@
     "promoted": "Promoted and Marketed By Swarnim Enterprises, Maharashtra",
     "rights": "© 2026 {store}, {city}, {region}. All rights reserved.",
     "dripfunnel": "DripFunnel",
-    "dripfunnelLink": "Powered by DripFunnel (opens dripfunnel.com)"
+    "dripfunnelLink": "DripFunnel — visit dripfunnel.com",
+    "poweredBy": "Powered by"
   },
   "chat": "Chat with {store}",
   "links": {

@@ -1,11 +1,23 @@
 .page {
   display: flex;
   box-sizing: border-box;
-  width: min(100%, 1240px);
+  width: min(100%, 1344px);
   flex-direction: column;
   gap: 16px;
   margin-inline: auto;
-  padding: 20px 16px 8px;
+  padding: 28px 16px 72px;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 32px 24px 88px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    padding: 40px 32px 104px;
+  }
 }
 
 .crumbs {
@@ -285,15 +297,14 @@
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: 0 1px 2px rgb(19 22 26 / 5%);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
-  border-color: rgb(199 68 21 / 35%);
-  box-shadow: 0 24px 44px -26px rgb(63 33 22 / 45%);
+  border-color: rgb(199 68 21 / 30%);
+  box-shadow: var(--shadow-lift);
   transform: translateY(-4px);
 }
 
@@ -304,11 +315,14 @@
 .cardPicture {
   position: relative;
   overflow: hidden;
+  margin: 8px 8px 0;
+  border-radius: 10px;
   aspect-ratio: 1 / 1;
-  background: var(--soft);
+  background: #fff;
 }
 
 .gridList .cardPicture {
+  margin: 8px;
   width: 38%;
   max-width: 220px;
   flex: none;
@@ -331,7 +345,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background-color: var(--soft);
+  background-color: #fff;
   color: transparent;
   transition: transform 0.6s ease;
 }
@@ -361,8 +375,8 @@
 .offBadge,
 .badge {
   display: inline-flex;
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: 4px 9px;
+  border-radius: 6px;
   background: var(--accent);
   color: var(--accent-ink);
   font-size: 11px;
@@ -423,27 +437,46 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 6px;
   padding: 14px 14px 16px;
 }
 
 .stockBadge {
   display: inline-flex;
-  padding: 3px 9px;
-  border-radius: 999px;
-  font-size: 11px;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgb(255 255 255 / 94%);
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.stockBadge::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentcolor;
+  content: '';
 }
 
 .stockIn {
-  background: rgb(0 165 68 / 12%);
-  color: #00702e;
+  color: var(--green-deep);
 }
 
 .stockOut {
-  background: #ffe2e2;
-  color: #9f0712;
+  color: var(--danger);
+}
+
+.offText {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .cardName {
@@ -451,9 +484,10 @@
   overflow: hidden;
   margin: 0;
   font-family: var(--heading-font);
-  font-size: 15px;
-  font-weight: var(--heading-weight);
-  line-height: 1.3;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
   overflow-wrap: anywhere;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -478,7 +512,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 4px;
-  margin: 0;
+  margin: 4px 0 0;
   color: var(--ink);
 }
 
@@ -495,11 +529,11 @@
 }
 
 .price::part(amount) {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .price::part(was) {
-  margin-left: 6px;
+  margin-right: 6px;
   color: var(--muted);
   font-size: 13px;
 }
@@ -512,7 +546,7 @@
 .cardAction {
   display: inline-flex;
   width: 100%;
-  min-height: 44px;
+  min-height: 40px;
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
@@ -520,7 +554,7 @@
   margin-top: auto;
   padding: 0 14px;
   border: 1px solid var(--accent);
-  border-radius: 999px;
+  border-radius: 8px;
   background: var(--accent);
   color: var(--accent-ink);
   font-size: 14px;
@@ -541,9 +575,9 @@
 
 .cardActionOff,
 .cardActionOff:hover {
-  border-color: var(--line);
-  background: var(--soft);
-  color: var(--muted);
+  border-color: transparent;
+  background: rgb(199 68 21 / 50%);
+  color: #fff;
   cursor: not-allowed;
 }
 
@@ -728,7 +762,7 @@
   align-self: flex-start;
   padding: 0 24px;
   border: 1px solid var(--accent);
-  border-radius: 999px;
+  border-radius: var(--button-radius);
   background: var(--accent);
   color: var(--accent-ink);
   font: inherit;
@@ -767,6 +801,7 @@
   max-width: 640px;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 20px;
 }
 
 .search label {
@@ -818,10 +853,6 @@
 }
 
 @media (min-width: 900px) {
-  .page {
-    padding: 24px 32px 8px;
-  }
-
   .title {
     font-size: 36px;
   }
@@ -845,8 +876,23 @@
 
   .filterBody,
   .filterBodyOpen {
+    position: sticky;
+    top: 96px;
     display: flex;
     flex-direction: column;
+    padding: 18px 18px 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .filterBody .facet:last-child,
+  .filterBodyOpen .facet:last-child {
+    border-bottom: 0;
+  }
+
+  .listingFiltered {
+    grid-template-columns: 250px minmax(0, 1fr);
   }
 
   .grid,
@@ -1033,8 +1079,156 @@
     animation: rise 0.25s ease;
   }
 
-  .filterToggle {
+  /* Only while its sheet is open does the button sit above everything, to close it; closed, it scrolls under the header. */
+  .filterToggle[aria-expanded='true'] {
     position: relative;
     z-index: 95;
+  }
+
+  .cardAction {
+    padding: 0 8px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
+
+/* The shop's title band: its action, and three catalogue pictures beside it on wide screens. */
+.heroActions {
+  margin-top: 22px;
+}
+
+.heroTiles {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroTile {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 1 / 1;
+  transition: transform 0.3s ease;
+}
+
+.heroTile:nth-child(2) {
+  transform: translateY(-16px);
+}
+
+.heroTile:hover {
+  transform: translateY(-4px);
+}
+
+.heroTileLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.heroTileLink:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+
+/* Category tabs under the title band, sideways-scrolling on phones. */
+.tabs {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.tabsInner {
+  display: flex;
+  box-sizing: border-box;
+  width: min(100%, 1344px);
+  gap: 4px;
+  margin: 0 auto;
+  padding: 0 16px;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.tab,
+.tabOn {
+  position: relative;
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--accent);
+}
+
+.tabOn {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.tabOn::after {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  left: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  content: '';
+}
+
+.tab:focus-visible,
+.tabOn:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
+}
+
+/* The filter panel's heading and Clear filters, and a value no product carries yet. */
+.filterHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.filterTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.checkEmpty {
+  display: block;
+  padding: 7px 0 7px 26px;
+  line-height: 1.35;
+  color: var(--muted);
+  font-size: 14px;
+  opacity: 0.55;
+  cursor: default;
+}
+
+@media (min-width: 768px) {
+  .tabsInner {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tabsInner {
+    padding: 0 32px;
   }
 }

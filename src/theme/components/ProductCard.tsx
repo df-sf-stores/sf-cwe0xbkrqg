@@ -1,7 +1,7 @@
 import { Image, Link, Price, useStorefront, type Money, type ProductCard as Card } from '@dripfunnel/storefront-core/theme'
 import { CardTools } from './interactive/CardTools'
 import { cx } from './cx'
-import { ArrowRight } from './Icons'
+import { ArrowRight, CartIcon } from './Icons'
 import styles from '../styles/shop.module.css'
 
 /** How much below its compare-at price a product sells, in whole percent; null without a real saving. */
@@ -25,13 +25,12 @@ export const ProductCard = ({ product }: { product: Card }) => {
           {product.photo ? <Image image={product.photo} alt={product.photo.alt ?? product.name} ratio={1} sizes="(min-width: 1280px) 300px, (min-width: 768px) 33vw, 66vw" className={styles.cardImage} /> : <span className={styles.noPicture}>{t('site.card.noPicture')}</span>}
         </Link>
         <div className={styles.cardBadges}>
-          {off ? <span className={styles.offBadge}>{t('site.card.off', { percent: off })}</span> : null}
+          <span className={cx(styles.stockBadge, inStock ? styles.stockIn : styles.stockOut)}>{inStock ? t('site.card.inStock') : t('site.card.outOfStock')}</span>
           {product.badges[0] ? <span className={styles.badge}>{product.badges[0].label}</span> : null}
         </div>
         <CardTools product={product} percent={off} />
       </div>
       <div className={styles.cardBody}>
-        <span className={cx(styles.stockBadge, inStock ? styles.stockIn : styles.stockOut)}>{inStock ? t('site.card.inStock') : t('site.card.outOfStock')}</span>
         <h3 className={styles.cardName}>
           <Link href={product.href} className={styles.cardNameLink}>
             {product.name}
@@ -43,6 +42,7 @@ export const ProductCard = ({ product }: { product: Card }) => {
             <Price money={product.price} compareAt={product.compareAt} includesTax={store.pricesIncludeTax} locale={locale} t={t} className={styles.price} />
           </p>
         ) : null}
+        {off ? <span className={styles.offText}>{t('site.card.off', { percent: off })}</span> : null}
         {inStock ? (
           <Link href={product.href} className={styles.cardAction}>
             {t('site.card.view')}
@@ -50,6 +50,7 @@ export const ProductCard = ({ product }: { product: Card }) => {
           </Link>
         ) : (
           <span className={cx(styles.cardAction, styles.cardActionOff)} aria-disabled="true">
+            <CartIcon className={styles.cardActionIcon} />
             {t('site.card.outOfStock')}
           </span>
         )}

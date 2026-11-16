@@ -21,7 +21,7 @@ export type HeroSlide = {
 type Labels = { region: string; role: string; previous: string; next: string; pause: string; play: string; goTo: (n: number) => string }
 
 /**
- * The home page's hero: picture and words side by side on wide screens, the picture above the words on phones.
+ * The home page's hero: the banner edge to edge with its dots over it, and the slide's words and actions in a strip below.
  * Autoplays with a pause button, stops under reduced motion and while hovered or focused; swipes on touch screens.
  */
 export const HeroSlider = ({ slides, labels, actions }: { slides: HeroSlide[]; labels: Labels; actions: ReactNode }) => {
@@ -86,30 +86,30 @@ export const HeroSlider = ({ slides, labels, actions }: { slides: HeroSlide[]; l
               </button>
             </>
           ) : null}
+          {count > 1 ? (
+            <div className={styles.controls}>
+              <div className={styles.dots}>
+                {slides.map((slide, index) => (
+                  <button key={slide.key} type="button" className={cx(styles.dot, index === selected && styles.dotOn)} aria-label={labels.goTo(index + 1)} aria-current={index === selected} onClick={() => go(index)} />
+                ))}
+              </div>
+              {reduced ? null : (
+                <button type="button" className={styles.toggle} aria-label={stopped ? labels.play : labels.pause} onClick={() => setStopped(!stopped)}>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d={stopped ? 'M8 5l11 7-11 7z' : 'M8 5v14M16 5v14'} />
+                  </svg>
+                </button>
+              )}
+            </div>
+          ) : null}
         </div>
         {current ? (
           <div className={styles.copy} aria-live={autoplay && !held ? 'off' : 'polite'}>
-            <p key={current.key} className={styles.eyebrow}>
-              {current.title}
-            </p>
-            <p className={styles.body}>{current.body}</p>
+            <div key={current.key} className={styles.text}>
+              <p className={styles.eyebrow}>{current.title}</p>
+              <p className={styles.body}>{current.body}</p>
+            </div>
             <div className={styles.actions}>{actions}</div>
-            {count > 1 ? (
-              <div className={styles.controls}>
-                <div className={styles.dots}>
-                  {slides.map((slide, index) => (
-                    <button key={slide.key} type="button" className={cx(styles.dot, index === selected && styles.dotOn)} aria-label={labels.goTo(index + 1)} aria-current={index === selected} onClick={() => go(index)} />
-                  ))}
-                </div>
-                {reduced ? null : (
-                  <button type="button" className={styles.toggle} aria-label={stopped ? labels.play : labels.pause} onClick={() => setStopped(!stopped)}>
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d={stopped ? 'M8 5l11 7-11 7z' : 'M8 5v14M16 5v14'} />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            ) : null}
           </div>
         ) : null}
       </div>

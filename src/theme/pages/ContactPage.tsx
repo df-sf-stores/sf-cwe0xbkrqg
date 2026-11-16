@@ -5,7 +5,8 @@ import { cx } from '../components/cx'
 import { ArrowRight, ChatIcon, GlobeIcon, MailIcon, PhoneIcon, PinIcon } from '../components/Icons'
 import { Enquiry } from '../components/interactive/Enquiry'
 import { Layout } from '../components/Layout'
-import { SectionHead, WhatsAppPill } from '../components/Sections'
+import { PageHero } from '../components/PageHero'
+import { WhatsAppPill } from '../components/Sections'
 import s from '../styles/sections.module.css'
 import styles from '../styles/pages.module.css'
 
@@ -44,17 +45,17 @@ export const ContactPage = () => {
   useHead({ title: t('pages.contact.seoTitle', { store: brand.name }), description: t('pages.contact.seoDescription', { store: brand.name }), canonical: '/contact/' })
   return (
     <Layout>
-      <section className={cx(styles.hero, styles.heroCompact)}>
-        <div className={cx(s.container, styles.contactHead)}>
-          <ThemeImage src="brand-logo-full.png" alt={t('pages.contact.logoAlt', { store: brand.name })} ratio={397 / 232} sizes="140px" className={styles.contactLogo} />
-          <h1 className={styles.heroTitle}>{t('pages.contact.heading')}</h1>
-          <p className={s.lead}>{t('pages.contact.lead', { store: brand.name })}</p>
-        </div>
-      </section>
-      <section className={s.section}>
+      <PageHero
+        crumbs={[{ label: t('pages.contact.title'), href: '/contact/' }]}
+        title={t('pages.contact.heading')}
+        lead={t('pages.contact.lead', { store: brand.name })}
+        aside={<ThemeImage src="brand-logo-full.png" alt={t('pages.contact.logoAlt', { store: brand.name })} ratio={397 / 232} sizes="180px" className={styles.contactLogo} />}
+      />
+      <section className={styles.contactSection}>
         <div className={cx(s.container, styles.contactGrid)}>
           <div className={styles.contactSide}>
-            <SectionHead align="start" title={t('pages.contact.reach.title')} lead={t('pages.contact.reach.lead', { store: brand.name })} />
+            <h2 className={styles.contactTitle}>{t('pages.contact.reach.title')}</h2>
+            <p className={styles.contactLead}>{t('pages.contact.reach.lead', { store: brand.name })}</p>
             <ul className={styles.reach}>
               {brand.hasPhone ? (
                 <>

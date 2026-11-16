@@ -1,5 +1,6 @@
 import { Link, useLocation, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { Layout } from '../components/Layout'
+import { PageHero } from '../components/PageHero'
 import styles from '../styles/policy.module.css'
 
 const kinds = ['terms', 'privacy', 'shipping', 'returns', 'legal'] as const
@@ -37,10 +38,7 @@ export const PolicyPage = () => {
   const page = kind ? pages[kind] : null
   return (
     <Layout>
-      <header className={styles.band}>
-        <h1 className={styles.title}>{page ? page.title : t('pages.policy.title')}</h1>
-        <span className={styles.rule} />
-      </header>
+      <PageHero crumbs={[{ label: page ? page.title : t('pages.policy.title'), href: kind ? `/policies/${kind}/` : path }]} title={page ? page.title : t('pages.policy.title')} />
       <article className={styles.article}>
         {page?.body ? (
           <Blocks text={page.body} />

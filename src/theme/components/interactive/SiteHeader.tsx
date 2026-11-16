@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Image, Link, navigate, SearchField, ThemeImage, useCart, useCollections, useListing, useMenu, useProducts, useStorefront, useWishlist, type MenuItem } from '@dripfunnel/storefront-core/theme'
+import { Image, Link, navigate, SearchField, ThemeImage, useCart, useCollections, useListing, useMenu, useLocation, useProducts, useStorefront, useWishlist, type MenuItem } from '@dripfunnel/storefront-core/theme'
 import { useBrand } from '../brand'
 import { cx } from '../cx'
 import { slugOf } from '../slugOf'
@@ -15,6 +15,19 @@ const searchFor = (words: string) => navigate(`/search/?q=${words.replace(/[&+%#
 const subTypeOf = <F extends { name: string }>(facets: F[]): F | undefined => facets.find((f) => /sub[\s-]?type/i.test(f.name)) ?? facets.at(-1)
 
 type NavLink = { id: string; label: string; href: string; mega: boolean; children: MenuItem[] }
+
+/** The menu item for the page being shown: the longest href the path starts with, ignoring a locale prefix such as /en/. */
+const activeOf = (nav: NavLink[], path: string): string | null => {
+  const here = path.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/'
+  let best: NavLink | null = null
+  for (const item of nav) {
+    const href = item.href.split('?')[0] ?? item.href
+    const hit = href === '/' ? here === '/' : here.startsWith(href)
+    // On a tie the later item wins: the mega menu's item and Shop All can share /shop/, and Shop All is the page itself.
+    if (hit && (!best || href.length >= (best.href.split('?')[0] ?? best.href).length)) best = item
+  }
+  return best?.id ?? null
+}
 
 /** The menu from Storefront › Menu, or the reference site's order while the store has none; one item opens the mega menu. */
 const useNav = (): NavLink[] => {
@@ -43,7 +56,8 @@ const useMegaData = (ready: boolean) => {
   const { collections } = useCollections({ first: 20 })
   const first = collections[0]
   const listing = useListing({ collection: first ? slugOf(first) : null }, ready)
-  const all = useProducts({ sort: 'name', first: 8 })
+  // The same query as the home and compare pages, so core's shared cache answers all three with one request.
+  const all = useProducts({ sort: 'name', first: 24 })
   // Until the store has a collection, its atta chakki and flour mills by name, as the home page does.
   const named = all.products.filter((p) => /chakki|flour\s*mill/i.test(p.name))
   const items = first ? listing.items : named.length ? named : all.products
@@ -51,6 +65,7 @@ const useMegaData = (ready: boolean) => {
   return {
     category: first?.name ?? t('site.nav.chakki'),
     categoryHref: first?.href ?? '/shop/',
+    categoryImage: first?.image ?? null,
     collections,
     products: items.slice(0, 6),
     subTypes: (subType?.values ?? []).filter((v) => v.count > 0 || !first).map((v) => ({ id: v.id, name: v.name, href: `/shop/?filter=${v.id}` })),
@@ -64,7 +79,11 @@ const MegaPanel = ({ data }: { data: ReturnType<typeof useMegaData> }) => {
       <div className={styles.megaInner}>
         <div className={styles.megaColumn}>
           <p className={styles.megaHeading}>{t('site.mega.category')}</p>
+          {/* The category's own picture from the catalogue, else the theme's Atta Chakki category banner. */}
           <Link href={data.categoryHref} className={styles.megaCategory}>
+            <span className={styles.megaCategoryPicture}>
+              {data.categoryImage ? <Image image={data.categoryImage} alt="" ratio={1} sizes="56px" className={styles.cover} /> : <ThemeImage src="category-flour-mill.webp" alt="" ratio={1} sizes="56px" className={styles.cover} />}
+            </span>
             {data.category}
           </Link>
           <ul className={styles.megaProducts}>
@@ -126,6 +145,8 @@ export const SiteHeader = () => {
   const { t } = useStorefront()
   const brand = useBrand()
   const nav = useNav()
+  const { path } = useLocation()
+  const active = activeOf(nav, path)
   const { count } = useCart()
   const { count: wished } = useWishlist()
   const [mega, setMega] = useState(false)
@@ -185,7 +206,7 @@ export const SiteHeader = () => {
                   }}
                 >
                   <span className={styles.navSplit}>
-                    <Link href={item.href} className={styles.navLink}>
+                    <Link href={item.href} className={cx(styles.navLink, active === item.id && styles.navActive)} aria-current={active === item.id ? 'page' : undefined}>
                       {item.label}
                     </Link>
                     <button type="button" className={styles.navCaret} aria-expanded={mega} aria-controls="site-mega" aria-label={t('site.nav.more', { item: item.label })} onClick={() => (mega ? setMega(false) : show())}>
@@ -197,7 +218,7 @@ export const SiteHeader = () => {
               ) : item.children.length ? (
                 <li key={item.id} className={styles.navItem}>
                   <details className={styles.dropdown}>
-                    <summary className={styles.navLink}>
+                    <summary className={cx(styles.navLink, active === item.id && styles.navActive)}>
                       {item.label}
                       <ChevronDown className={styles.caretIcon} />
                     </summary>
@@ -219,7 +240,7 @@ export const SiteHeader = () => {
                 </li>
               ) : (
                 <li key={item.id} className={styles.navItem}>
-                  <Link href={item.href} className={styles.navLink}>
+                  <Link href={item.href} className={cx(styles.navLink, active === item.id && styles.navActive)} aria-current={active === item.id ? 'page' : undefined}>
                     {item.label}
                   </Link>
                 </li>

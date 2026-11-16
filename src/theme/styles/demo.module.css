@@ -73,7 +73,8 @@
   margin: 0 48px 8px 0;
   font-family: var(--display-font);
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.15;
 }
 
@@ -157,7 +158,7 @@
 .submit {
   min-height: 52px;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--button-radius);
   background: var(--accent);
   box-shadow: 0 12px 24px -14px rgb(199 68 21 / 80%);
   color: #fff;
@@ -190,7 +191,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 999px;
+  border-radius: var(--button-radius);
   background: #1f9d55;
   color: #fff;
   font-weight: 700;
@@ -216,7 +217,7 @@
 .secondary {
   min-height: 48px;
   border: 1.5px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--button-radius);
   background: transparent;
   color: var(--ink);
   font: inherit;
@@ -239,6 +240,52 @@
 .icon {
   width: 22px;
   height: 22px;
+}
+
+/* The contact page's enquiry: a compact card, the required note and its button on one row. */
+.enquiry {
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.enquiry .title {
+  margin-right: 0;
+  font-size: 21px;
+}
+
+.enquiry .lead {
+  font-size: 14.5px;
+}
+
+.enquiry .field {
+  font-size: 13px;
+}
+
+.enquiry .field input,
+.enquiry .field select {
+  min-height: 44px;
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.enquiryFoot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.enquiryFoot .submit {
+  padding: 0 24px;
+}
+
+@media (min-width: 640px) {
+  .enquiryFoot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @media (min-width: 640px) {

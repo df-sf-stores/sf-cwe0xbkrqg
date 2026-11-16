@@ -1,9 +1,37 @@
 /* The home page's own sections; shared spacing, headings and buttons live in sections.module.css. */
 
-/* Why us: 2, 3 then 6 cards in a row. */
+/* Trust strip: six promises in one divided band on a cream-to-orange wash, wheat ears at its ends. */
+.trust {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(to bottom, var(--surface), rgb(255 243 232 / 75%));
+}
+
+.trustWheatLeft,
+.trustWheatRight {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  display: none;
+  width: 120px;
+  height: auto;
+  opacity: 0.35;
+}
+
+.trustWheatLeft {
+  left: -10px;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.trustWheatRight {
+  right: -10px;
+  transform: translateY(-50%) rotate(90deg) scaleX(-1);
+}
+
 .why {
   display: grid;
-  gap: 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 0;
   padding: 0;
@@ -14,54 +42,171 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 24px 14px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: var(--surface);
+  gap: 6px;
+  padding: 22px 12px;
+  border-bottom: 1px solid var(--line);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.whyCard:hover {
-  border-color: rgb(199 68 21 / 40%);
-  box-shadow: 0 20px 40px -26px rgb(63 33 22 / 45%);
-  transform: translateY(-3px);
+.whyCard:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+
+.whyCard:nth-last-child(-n + 2) {
+  border-bottom: 0;
 }
 
 .whyBadge {
   display: grid;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
   place-items: center;
+  margin-bottom: 4px;
+  border: 1px solid rgb(199 68 21 / 30%);
   border-radius: 999px;
-  background: var(--tint);
+  background: var(--surface);
   color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.whyCard:hover .whyBadge {
+  transform: translateY(-2px);
 }
 
 .whyIcon {
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 18px;
 }
 
 .whyIso {
   display: block;
-  width: 40px;
+  width: 26px;
   height: auto;
 }
 
 .whyTitle {
   margin: 0;
-  font-size: 16px;
+  color: var(--accent);
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
 }
 
+.whyTitle::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  background: rgb(199 68 21 / 45%);
+  content: '';
+}
+
 .whyBody {
+  max-width: 200px;
   margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* Shop by category: the store's collections, each a picture card leading to its listing. */
+.categories {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.category:hover {
+  border-color: rgb(199 68 21 / 30%);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-4px);
+}
+
+.category:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.categoryPicture {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  background: var(--picture);
+}
+
+.categoryImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s ease;
+}
+
+.category:hover .categoryImage {
+  transform: scale(1.04);
+}
+
+.categoryInitial {
+  color: rgb(199 68 21 / 35%);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.categoryText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px 18px;
+}
+
+.categoryName {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.categoryBody {
+  display: -webkit-box;
+  overflow: hidden;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.categoryMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* Flagship spotlight */
@@ -81,8 +226,10 @@
   position: relative;
   overflow: hidden;
   margin: 0;
-  border-radius: 28px;
-  background: radial-gradient(circle at 50% 35%, #fff 0%, var(--soft) 70%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow-card);
   aspect-ratio: 4 / 5;
 }
 
@@ -96,7 +243,7 @@
   top: 16px;
   left: 16px;
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--accent);
   color: #fff;
   font-size: 13px;
@@ -147,10 +294,11 @@
   height: 20px;
   flex: none;
   margin-top: 2px;
-  padding: 2px;
+  box-sizing: border-box;
+  padding: 3px;
   border-radius: 999px;
-  background: var(--tint);
-  color: var(--accent);
+  background: var(--blue);
+  color: #fff;
 }
 
 .priceBlock {
@@ -180,7 +328,7 @@
 
 .offChip {
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--accent);
   color: #fff;
   font-size: 12px;
@@ -190,7 +338,7 @@
 .inStock,
 .outStock {
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 700;
 }
@@ -279,7 +427,8 @@
   margin: 0 0 6px;
   font-family: var(--display-font);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .demoCardBody {
@@ -345,6 +494,8 @@
 
 .designedTitle {
   font-family: var(--display-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   font-size: 19px;
   line-height: 1.2;
 }
@@ -372,7 +523,7 @@
 
 .inRangeItem {
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--soft);
   font-size: 12px;
   font-weight: 600;
@@ -413,6 +564,21 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .whyCard,
+  .whyCard:nth-child(odd),
+  .whyCard:nth-last-child(-n + 2) {
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .whyCard:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .whyCard:nth-last-child(-n + 3) {
+    border-bottom: 0;
+  }
+
   .specList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -425,14 +591,37 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .builtPictures {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
+  .trustWheatLeft,
+  .trustWheatRight {
+    display: block;
+  }
+
   .why {
+    border-inline: 1px solid var(--line);
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .whyCard,
+  .whyCard:nth-child(odd),
+  .whyCard:nth-child(3n),
+  .whyCard:nth-last-child(-n + 3) {
+    padding: 26px 14px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .whyCard:last-child {
+    border-right: 0;
   }
 
   .flagship {
@@ -455,6 +644,10 @@
   }
 
   .designed {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .categories {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 

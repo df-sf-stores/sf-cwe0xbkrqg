@@ -85,7 +85,9 @@
       "all": "All machines",
       "allLead": "Every {store} Atta Chakki model, with live prices.",
       "shop": "Shop now",
-      "imageAlt": "{store} flour mill range"
+      "imageAlt": "{store} flour mill range",
+      "view": "View range",
+      "models": "Every model, with live prices"
     },
     "process": {
       "title": "From raw material to an Atta Chakki you can rely on",
@@ -105,7 +107,20 @@
       "s4": {
         "title": "Final Product",
         "body": "Designed for long-lasting performance, minimal maintenance and consistent output."
-      }
+      },
+      "action": "Our manufacturing process"
+    },
+    "viewAll": "View All Products",
+    "mills": {
+      "m1": "{store} 1.5 HP 2-in-1 domestic flour mill",
+      "m2": "{store} 2 HP 2-in-1 flour mill",
+      "m3": "{store} 2 HP regular flour mill",
+      "m4": "{store} standard domestic flour mill"
+    },
+    "cta": {
+      "title": "Ready for Fresh Atta at Home?",
+      "body": "Book a free home demo and see the {store} Atta Chakki in action — or browse every model online.",
+      "whatsapp": "WhatsApp Us"
     }
   },
   "contact": {
@@ -146,13 +161,24 @@
       "message": "Requirement / message",
       "optional": "Optional",
       "note": "* Required. We only use your details to respond to this enquiry.",
-      "submit": "Get My Recommendation",
+      "submit": "Send My Enquiry",
       "missing": "Please fill in this field.",
       "doneTitle": "Your enquiry is ready",
       "doneBody": "Send it to our team on WhatsApp and we will reply with a recommendation and a quote.",
       "send": "Send on WhatsApp",
       "edit": "Edit details",
-      "text": "Hello {store}, I'd like a recommendation. Name: {name}. Phone: {phone}. Email: {email}. Company: {company}. Product: {product}. Requirement: {message}"
+      "text": "Hello {store}, I'd like a recommendation. Name: {name}. Phone: {phone}. Email: {email}. Company: {company}. Product: {product}. Enquiry: {kind}. Requirement: {message}",
+      "kind": "Enquiry type",
+      "kinds": {
+        "choose": "Choose one (optional)",
+        "recommend": "Help choosing a machine",
+        "quote": "Price / quotation",
+        "demo": "Free home demo",
+        "support": "Service & support",
+        "dealer": "Dealer / bulk enquiry"
+      },
+      "badPhone": "Please enter a phone number with at least 10 digits.",
+      "badEmail": "Please enter a valid email address."
     },
     "email": "Email",
     "phone": "Phone",
@@ -229,8 +255,12 @@
   },
   "shopAll": {
     "seoTitle": "Shop All | {store}",
-    "title": "Shop all Atta Chakki",
-    "lead": "Every {store} Atta Chakki model with live prices — book a free home demo before you decide."
+    "title": "Shop all products",
+    "lead": "Browse the full {store} range, filter by category and availability, and add machines to your cart.",
+    "crumb": "Shop",
+    "browse": "Browse products",
+    "categories": "Product categories",
+    "all": "All"
   },
   "compare": {
     "seoTitle": "Compare models | {store}",

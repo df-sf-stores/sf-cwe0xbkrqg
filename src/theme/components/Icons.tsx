@@ -115,6 +115,18 @@ export const ChevronRight = ({ className }: P) => (
   </Icon>
 )
 
+export const MinusIcon = ({ className }: P) => (
+  <Icon className={className}>
+    <path d="M6 12h12" />
+  </Icon>
+)
+
+export const PlusIcon = ({ className }: P) => (
+  <Icon className={className}>
+    <path d="M6 12h12M12 6v12" />
+  </Icon>
+)
+
 export const ArrowRight = ({ className }: P) => (
   <Icon className={className}>
     <path d="M5 12h14M13 6l6 6-6 6" />
