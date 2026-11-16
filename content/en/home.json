@@ -1,70 +1,219 @@
 {
-  "title": "Shop our collections",
+  "seoTitle": "{store} Atta Chakki | Domestic Flour Mill for Fresh Atta at Home",
+  "seoDescription": "Buy {store} Atta Chakki for fresh, hygienic and convenient flour milling at home. Book a free home demo and get free shipping up to 200 KM.",
+  "title": "Fresh Atta. Better Taste. Made Right at Home.",
+  "lead": "{store} Atta Chakki brings fresh, hygienic and convenient flour milling directly to your home.",
+  "viewAll": "View all",
   "hero": {
-    "region": "Featured collections",
+    "region": "Highlights",
     "role": "carousel",
     "previous": "Previous slide",
     "next": "Next slide",
-    "pause": "Pause the slides",
-    "play": "Play the slides",
-    "goTo": "Go to slide {n}",
-    "first": "Our latest collection, shop now",
-    "second": "Shop the collection",
-    "third": "Explore more of the shop"
-  },
-  "newest": "New Arrivals",
-  "newestEmpty": "New arrivals are on their way. Check back soon.",
-  "featured": "Featured Products",
-  "viewAll": "View all products",
-  "promises": {
-    "title": "Why shop with us",
-    "craft": {
-      "title": "Chosen with Care",
-      "body": "Every piece is picked for its quality and finish"
+    "pause": "Pause slides",
+    "play": "Play slides",
+    "goTo": "Show slide {n}",
+    "demo": "Book a Free Demo",
+    "view": "View Atta Chakki",
+    "s1": {
+      "title": "Fully Automatic Domestic Flour Mill",
+      "body": "Smart sensor technology, overload protection and low temperature grinding — the {store} Atta Chakki for fresh, hygienic atta at home.",
+      "alt": "{store} Atta Chakki, fully automatic domestic flour mill"
     },
-    "stage": {
-      "title": "For Every Occasion",
-      "body": "Something for everyday wear and special days alike"
+    "s2": {
+      "title": "Leading Manufacturer of Domestic Aata Chakki",
+      "body": "Compact stoneless flour mills for fresh atta at home — built with premium-grade materials for long-lasting performance.",
+      "alt": "{store} compact stoneless flour mills"
     },
-    "secure": {
-      "title": "Secure Checkout",
-      "body": "Pay safely through trusted payment partners"
+    "s3": {
+      "title": "Stainless-Steel Grinding, Designer Doors",
+      "body": "Stainless steel grinding chamber, 100% copper winding power saver motor and auto start, auto stop, auto cleaning — in a cabinet that suits your kitchen.",
+      "alt": "{store} Atta Chakki with a designer door cabinet"
     },
-    "support": {
-      "title": "Here to Help",
-      "body": "Questions about an order? Get in touch with us"
+    "s4": {
+      "title": "See It Before You Buy",
+      "body": "Book a free home demo and watch the {store} Atta Chakki grind fresh atta in your own kitchen.",
+      "alt": "{store} Atta Chakki home demo"
+    },
+    "s5": {
+      "title": "Fresh Atta. Made Right at Home.",
+      "body": "{store} Atta Chakki brings fresh, hygienic and convenient flour milling directly to your home.",
+      "alt": "Fresh atta made at home with the {store} Atta Chakki"
     }
   },
-  "collections": {
-    "eyebrow": "Shop by Category",
-    "title": "Explore Our Collections",
-    "explore": "Explore"
+  "why": {
+    "title": "Why {store}",
+    "iso": {
+      "title": "ISO 9001:2015 Certified",
+      "body": "Quality management system certified to ISO 9001:2015."
+    },
+    "demo": {
+      "title": "Free Home Demo",
+      "body": "We come to your home and show you the machine in action."
+    },
+    "shipping": {
+      "title": "Free Shipping up to 200KM",
+      "body": "Free delivery for orders within 200 km."
+    },
+    "motor": {
+      "title": "Copper Winding Motor",
+      "body": "100% copper winding, power-saver motor."
+    },
+    "safe": {
+      "title": "Safe & Automatic",
+      "body": "Auto start, auto stop and overload protection."
+    },
+    "support": {
+      "title": "Dedicated Support",
+      "body": "A {store} team before and after you buy."
+    }
   },
-  "deals": {
-    "eyebrow": "Handpicked for you"
+  "featured": {
+    "title": "Featured Products",
+    "lead": "Every {store} Atta Chakki model with live prices — book a free home demo before you decide.",
+    "action": "View Atta Chakki",
+    "empty": "New machines are on their way. Book a free home demo and our team will help you choose."
   },
-  "spotlight": {
-    "eyebrow": "Featured Collection",
-    "body": "Discover the pieces in this collection, chosen for their quality and craft.",
-    "cta": "Shop all {name}"
+  "flagship": {
+    "badge": "{store} flagship",
+    "title": "{store} 1.5 HP Atta Chakki",
+    "lead": "Our flagship home flour mill — fully automatic 2-in-1 grinding for fresh, hygienic atta every day.",
+    "f1": "1.5 HP powerful motor",
+    "f2": "Fully automatic operation",
+    "f3": "100% copper winding motor",
+    "f4": "7 sieves / 7 chalni",
+    "f5": "Child safety lock",
+    "f6": "Auto start system",
+    "f7": "Multi-grain grinding",
+    "f8": "Approx. 8–10 kg/hour capacity",
+    "f9": "1-year motor warranty",
+    "chipDemo": "Free Home Demo",
+    "chipShipping": "Free Shipping up to 200 KM",
+    "view": "View Product",
+    "demo": "Book a Free Demo",
+    "gallery": "Design options",
+    "design1": "{store} Atta Chakki design 1",
+    "design2": "{store} Atta Chakki design 2",
+    "design3": "{store} Atta Chakki design 3"
   },
-  "story": {
-    "eyebrow": "Our Story",
-    "title": "Made with care,",
-    "accent": "chosen for you.",
-    "lead": "We bring together pieces we love, chosen for their quality, their craft and the way they make you feel.",
-    "body": "Whether you are shopping for yourself or for someone special, every item in our collection is picked to look as good as it feels.",
-    "more": "Explore the collection"
+  "homeDemo": {
+    "title": "See the {store} Atta Chakki at Your Home Before You Buy",
+    "lead": "Not sure if the Atta Chakki is right for you? No problem. Our team will visit your home and give you a live demonstration of the machine.",
+    "s1": {
+      "title": "Book a free demo",
+      "body": "Share your name, phone number and area — our team will get in touch to fix a convenient time."
+    },
+    "s2": {
+      "title": "We come to your home",
+      "body": "We demonstrate the Atta Chakki and answer all your questions."
+    },
+    "s3": {
+      "title": "You decide",
+      "body": "You decide only after you’re satisfied."
+    },
+    "demo": "Book a Free Home Demo",
+    "whatsapp": "WhatsApp Us",
+    "imageAlt": "{store} Atta Chakki demonstrated in a home kitchen",
+    "tryTitle": "Try It at Home Before You Buy",
+    "tryBody": "We believe you should see the machine in action before making your decision. Our team will visit your home for a live demonstration. If you’re satisfied with the product and its performance, you can proceed with your order.",
+    "shipTitle": "Free Shipping up to 200 KM",
+    "shipBody": "Enjoy free shipping for orders within 200 KM.",
+    "shipAlt": "{store} Atta Chakki ready for delivery"
   },
-  "range": {
-    "eyebrow": "Explore the Range",
-    "title": "Find Exactly What You Need",
-    "shopAll": "Shop all {name}"
+  "smart": {
+    "title": "Smart Features in Every {store} Atta Chakki",
+    "lead": "Technology built into the {store} Atta Chakki for safer, cleaner and easier everyday grinding.",
+    "sensor": "Smart Sensor Technology",
+    "overload": "Overload Protection",
+    "lowTemp": "Low Temperature Grinding Technology",
+    "chamber": "Stainless Steel Grinding Chamber",
+    "motor": "100% Copper Winding Power Saver Motor",
+    "auto": "Auto Start, Auto Stop, Auto Cleaning"
   },
-  "signup": {
-    "eyebrow": "Join us",
-    "title": "Shop faster with an account",
-    "body": "Create an account for faster checkout, order tracking and saved addresses.",
-    "action": "Create Account"
+  "designed": {
+    "title": "Designed for Fresh Flour at Home",
+    "lead": "From everyday wheat flour to multi-grain grinding, {store} Atta Chakki is designed to make fresh flour preparation simple, hygienic and convenient for your family.",
+    "action": "View Atta Chakki",
+    "inRange": "In this range",
+    "wheat": {
+      "title": "Everyday Wheat Atta",
+      "body": "Fresh atta for the family, ground at home whenever you need it."
+    },
+    "multi": {
+      "title": "Multi-Grain Flour",
+      "body": "Wheat, jowar, bajra and gram (besan) — choose your grain and know exactly what goes into your flour."
+    },
+    "texture": {
+      "title": "Fine or Coarse",
+      "body": "A sieve (chalni) set lets you choose the texture of your flour."
+    },
+    "hygiene": {
+      "title": "Hygienic & Automatic",
+      "body": "Stainless-steel grinding chamber with auto start, auto stop and auto cleaning."
+    }
+  },
+  "upClose": {
+    "title": "See the Machine Up Close",
+    "lead": "Real photos of an atta chakki — the finish, grinding chamber and stainless-steel parts you get at home.",
+    "chamber": "Grinding chamber and stainless-steel drum",
+    "door": "Designer door panel",
+    "hopper": "Stainless-steel feed hopper"
+  },
+  "families": {
+    "eyebrow": "Fresh, Hygienic Flour at Home",
+    "title": "Why Families Choose {store}",
+    "lead": "Fresh, hygienic flour at home from a machine made by its manufacturer — with a team that stays with you after the sale.",
+    "imageAlt": "{store} Standard Model flour mill",
+    "r1": {
+      "title": "Fresh, Hygienic Flour at Home",
+      "body": "Grind your own grain whenever you need it, in a stainless-steel grinding chamber — you know exactly what goes into your atta."
+    },
+    "r2": {
+      "title": "100% Copper Winding Motor",
+      "body": "A power-saver motor with overload protection, on standard household electricity."
+    },
+    "r3": {
+      "title": "Fully Automatic & Child-Safe",
+      "body": "Auto start, auto stop and auto cleaning, with a child safety lock on the 1.5 HP model."
+    },
+    "r4": {
+      "title": "Multi-Grain Grinding",
+      "body": "Wheat, jowar, bajra and gram (besan), with a sieve set for the texture you like."
+    },
+    "r5": {
+      "title": "Low Maintenance, Energy Efficient",
+      "body": "Stoneless grinding with low-temperature technology, designed for minimal upkeep and low running cost."
+    },
+    "r6": {
+      "title": "Manufacturer-Backed Support",
+      "body": "{store} builds its own machines, and a dedicated {store} team helps you before and after you buy."
+    }
+  },
+  "built": {
+    "title": "Built With Engineering Discipline",
+    "lead": "Every {store} Atta Chakki is manufactured with attention to material quality, motor performance, safety and long-term everyday use.",
+    "action": "How we manufacture",
+    "s1": {
+      "title": "Material Selection",
+      "body": "Premium-grade materials, with a stainless-steel grinding chamber and blade cutter."
+    },
+    "s2": {
+      "title": "Fabrication & Assembly",
+      "body": "Modern manufacturing techniques for robust cabinets, grinding chambers and cutter assemblies."
+    },
+    "s3": {
+      "title": "Motor & Safety",
+      "body": "100% copper winding motors with overload protection and safety features built in."
+    },
+    "s4": {
+      "title": "Performance Testing",
+      "body": "Grinding systems built for consistent output and minimal maintenance."
+    },
+    "s5": {
+      "title": "Final Inspection",
+      "body": "Stringent quality control before an Atta Chakki is ready for your home."
+    },
+    "alt1": "{store} 1.5 HP 2-in-1 flour mill",
+    "alt2": "{store} 2 HP 2-in-1 flour mill",
+    "alt3": "{store} Standard Model flour mill"
   }
 }

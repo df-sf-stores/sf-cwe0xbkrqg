@@ -1,8 +1,51 @@
 {
-  "title": "Frequently Asked Questions",
-  "body": "## Orders & Delivery\n\nQ: How much does delivery cost?\nThe delivery charge for your order is worked out and shown at checkout, before you pay.\n[Read our Shipping Policy](/policies/shipping/)\n\nQ: Where can I see my orders?\nSign in to your account and open My Orders to see every order you have placed and where it stands.\n[Go to My Orders](/account/orders/)\n\nQ: Can I cancel my order?\nGet in touch as soon as you can and we will help if the order has not been sent yet.\n\n## Returns\n\nQ: Can I return or exchange a product?\nOur return policy sets out what can be returned and how.\n[Read our Return Policy](/policies/returns/)\n\n## Payments & Products\n\nQ: Which payment methods do you accept?\nThe payment methods available for your order are shown at checkout.\n\nQ: Will the product look exactly like the photos?\nWe photograph every product carefully, but screens vary, so colours may look slightly different in person.\n\n## Contact\n\nQ: How can I reach you?\nOur contact page has every way to reach us.\n[Contact us](/contact/)",
+  "seoTitle": "FAQ | {store}",
+  "seoDescription": "Answers about choosing a machine, ordering and support.",
+  "title": "Frequently asked questions",
+  "lead": "Answers about choosing a machine, ordering and support. Can’t find what you need? Our team is happy to help.",
+  "tabs": {
+    "label": "Question categories",
+    "all": "All questions",
+    "buying": "Buying",
+    "products": "Products",
+    "orders": "Orders",
+    "support": "Support",
+    "count": "{name} ({count})"
+  },
+  "buying": {
+    "q1": "Which flour mill is suitable for home use?",
+    "a1": "For household grinding, the 1 HP Standard Model (8–10 kg capacity) and the 1.5 HP Box Model (2 in 1) are compact stoneless mills designed for daily home use. Larger households that grind more often can consider the 2 HP models with a 10–12 kg capacity.",
+    "q2": "Can I see the Atta Chakki before I buy?",
+    "a2": "Yes. Book a free home demo and our team will visit your home, demonstrate the Atta Chakki and answer all your questions. You decide only after you are satisfied.",
+    "q3": "Which Atta Chakki is right for my family?",
+    "a3": "Tell us which grains you use and roughly how much flour your family needs. Our team will recommend the right model — book a free home demo, send an enquiry or message us on WhatsApp."
+  },
+  "products": {
+    "q1": "Which grains can I grind?",
+    "a1": "The {store} 1.5 HP Atta Chakki is suitable for wheat, jowar, bajra and gram (besan), as well as turmeric, chilli and other dry spices. Its 7-sieve (7 chalni) set lets you choose how fine your flour is.",
+    "q2": "How much electricity does the Atta Chakki use?",
+    "a2": "The {store} 1.5 HP Atta Chakki runs on standard single-phase household electricity and uses approximately 1 unit of electricity for 10 kg of grinding, with a capacity of approximately 8–10 kg per hour.",
+    "q3": "Is the Atta Chakki safe to use at home?",
+    "a3": "The {store} 1.5 HP Atta Chakki has a child safety lock and an auto start system, and {store} mills feature overload protection and a 100% copper winding motor."
+  },
+  "orders": {
+    "q1": "How do I place an order?",
+    "a1": "Add the machine you want to your cart and complete the secure online checkout — you can then follow the order status from your account. If a machine is out of stock, or you would like help choosing first, send an enquiry or request a quote and our team will get back to you.",
+    "q2": "What information is required to book a demo or get a quote?",
+    "a2": "Your name, phone number and area are enough to book a free home demo. For a quote, tell us the Atta Chakki model you are interested in and your delivery location.",
+    "q3": "Do you provide delivery?",
+    "a3": "Yes — shipping is free for orders within 200 km. Delivery options for your address are shown at checkout before you pay; for locations further away, please contact our team."
+  },
+  "support": {
+    "q1": "Do you provide technical support?",
+    "a1": "Yes — {store} provides customer support and service, and our team can guide you on choosing the right model and motor for your requirement. Please contact us for support specific to your machine.",
+    "q2": "Do you provide after-sales support?",
+    "a2": "Please contact our team for current availability and details."
+  },
   "more": {
-    "title": "Still have a question?",
-    "lead": "We are happy to help. Get in touch any time."
+    "title": "Still Have Questions?",
+    "lead": "Tell us what you grind and how much — our team will help you choose the right machine.",
+    "expert": "Talk to an Expert",
+    "whatsapp": "WhatsApp Us"
   }
 }

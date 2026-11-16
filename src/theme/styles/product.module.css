@@ -436,3 +436,78 @@
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
+
+.enquire {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.ask {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #1f9d55;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ask:hover {
+  background: #17834a;
+}
+
+.ask:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.askIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--tint);
+  color: var(--deep);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chipIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
+}
+
+/* Phones: Add to cart and Buy now stay in reach above the tab bar while the shopper reads. */
+@media (max-width: 767px) {
+  .buy {
+    position: sticky;
+    z-index: 20;
+    bottom: 64px;
+    margin-inline: -16px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--line);
+    background: rgb(253 252 249 / 96%);
+    backdrop-filter: blur(10px);
+  }
+}

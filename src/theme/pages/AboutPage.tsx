@@ -1,109 +1,109 @@
-import type { ReactNode } from 'react'
-import { Image, Link, useCollections, useStorefront } from '@dripfunnel/storefront-core/theme'
-import { Layout } from '../components/Layout'
-import { Ornament } from '../components/Ornament'
+import { Image, Link, ThemeImage, useCollections, useHead, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { useBrand } from '../components/brand'
 import { cx } from '../components/cx'
-import art from '../styles/art.module.css'
-import home from '../styles/home.module.css'
-import styles from '../styles/about.module.css'
+import { ArrowRight } from '../components/Icons'
+import { Layout } from '../components/Layout'
+import { Checklist, pill, SectionHead, SmartFeatures, Steps, UpClose, WhyFamilies } from '../components/Sections'
+import s from '../styles/sections.module.css'
+import styles from '../styles/pages.module.css'
 
-const Value = ({ title, body, children }: { title: string; body: string; children: ReactNode }) => (
-  <li className={styles.value}>
-    <span className={styles.valueIcon} aria-hidden="true">
-      <svg viewBox="0 0 24 24" focusable="false">
-        {children}
-      </svg>
-    </span>
-    <h3 className={styles.valueTitle}>{title}</h3>
-    <p className={styles.valueBody}>{body}</p>
-  </li>
-)
+/** The four claims About and Manufacturing share under their story. */
+export const useBuiltClaims = () => {
+  const { t } = useStorefront()
+  return [t('pages.about.story.c1'), t('pages.about.story.c2'), t('pages.about.story.c3'), t('pages.about.story.c4')]
+}
 
 export const AboutPage = () => {
-  const { store, t } = useStorefront()
-  const { collections } = useCollections({ first: 20 })
-  const storyImage = collections[0]?.image ?? null
-  const detailImage = collections[1]?.image ?? null
-  const address = store.address ? [store.address.street, store.address.city, store.address.region, store.address.postal].filter(Boolean).join(', ') : ''
-  const whatsapp = store.social.find((s) => s.network === 'whatsapp')
-  const visit = address || store.contactPhone || store.contactEmail
+  const { t } = useStorefront()
+  const brand = useBrand()
+  const claims = useBuiltClaims()
+  const { collections, status } = useCollections({ first: 20 })
+  useHead({ title: t('pages.about.seoTitle', { store: brand.name }), description: t('pages.about.seoDescription', { store: brand.name }), canonical: '/about/' })
+  // Each collection from the catalogue; with none yet, one card for every machine.
+  const range = collections.length ? collections.map((c) => ({ id: c.id, name: c.name, lead: c.description, href: c.href, image: c.image })) : [{ id: 'all', name: t('pages.about.range.all'), lead: t('pages.about.range.allLead', { store: brand.name }), href: '/shop/', image: null }]
   return (
     <Layout>
       <section className={styles.hero}>
-        <p className={styles.heroEyebrow}>{t('pages.about.eyebrow')}</p>
-        <h1 className={styles.heroTitle}>{t('pages.about.title', { store: store.name })}</h1>
-        <Ornament className={styles.heroOrnament} />
-        <p className={styles.heroLead}>{t('pages.about.lead', { store: store.name })}</p>
-      </section>
-      <div className={home.templeBorder} />
-      <section className={styles.story}>
-        <div className={styles.storyPictures}>
-          <div className={cx(styles.arch, art.art, art.stone)}>
-            {storyImage ? <Image image={storyImage} alt="" ratio={0.8} sizes="(min-width: 900px) 448px, 100vw" className={home.cover} /> : null}
-          </div>
-          <div className={cx(styles.detail, art.art, art.sand)}>
-            {detailImage ? <Image image={detailImage} alt="" ratio={1} sizes="144px" className={home.cover} /> : null}
-          </div>
-        </div>
-        <div className={styles.storyCopy}>
-          <p className={styles.eyebrow}>{t('pages.about.story.eyebrow')}</p>
-          <h2 className={styles.heading}>
-            {t('pages.about.story.title')} <em className={styles.accent}>{t('pages.about.story.accent')}</em>
-          </h2>
-          <p className={styles.lead}>{t('pages.about.story.first', { store: store.name })}</p>
-          <p className={styles.body}>{t('pages.about.story.second')}</p>
-        </div>
-      </section>
-      <section className={styles.promise}>
-        <div className={styles.promiseHead}>
-          <p className={styles.eyebrow}>{t('pages.about.promise.eyebrow')}</p>
-          <h2 className={styles.heading}>{t('pages.about.promise.title')}</h2>
-          <p className={styles.body}>{t('pages.about.promise.body')}</p>
-        </div>
-        <ul className={styles.values}>
-          <Value title={t('pages.about.promise.designs.title')} body={t('pages.about.promise.designs.body')}>
-            <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 3v4M21 5h-4M5 17v4M7 19H3" />
-          </Value>
-          <Value title={t('pages.about.promise.quality.title')} body={t('pages.about.promise.quality.body')}>
-            <path d="M6 3h12l4 6-10 12L2 9zM2 9h20M12 21L8 9l4-6 4 6z" />
-          </Value>
-          <Value title={t('pages.about.promise.service.title')} body={t('pages.about.promise.service.body')}>
-            <path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10zM8.5 11.5l2 2 3.5-3.5" />
-          </Value>
-        </ul>
-      </section>
-      {visit ? (
-        <section className={styles.visit}>
-          <div className={styles.visitCard}>
-            <div className={styles.visitPanel}>
-              <span className={styles.visitIcon} aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M4 10h16M5 10l1-5h12l1 5M5 10v10h14V10M9 20v-5h6v5" />
-                </svg>
-              </span>
-              <h2 className={styles.visitTitle}>{t('pages.about.visit.title')}</h2>
-              <p className={styles.visitLead}>{t('pages.about.visit.lead')}</p>
+        <div className={cx(s.container, styles.heroGrid)}>
+          <div className={styles.heroCopy}>
+            <h1 className={styles.heroTitle}>{t('pages.about.title')}</h1>
+            <p className={s.lead}>{t('pages.about.lead', { store: brand.name })}</p>
+            <p className={styles.isoLine}>
+              <ThemeImage src="iso-certified.webp" alt={t('site.footer.isoAlt')} ratio={160 / 164} sizes="48px" className={styles.isoBadge} />
+              {t('site.footer.iso')}
+            </p>
+            <div className={s.actions}>
+              <Link href="/shop/" className={pill()}>{t('pages.about.view')}</Link>
+              <Link href="/contact/" className={pill('outline')}>
+                {t('pages.about.talk')}
+              </Link>
             </div>
-            <div className={styles.visitDetails}>
-              <p className={styles.visitName}>{store.name}</p>
-              {address ? <p className={styles.visitAddress}>{address}</p> : null}
-              <ul className={styles.contacts}>
-                {store.contactPhone ? <li className={styles.contact}>{store.contactPhone}</li> : null}
-                {store.contactEmail ? <li className={styles.contact}>{store.contactEmail}</li> : null}
-              </ul>
-              {whatsapp ? (
-                <Link href={whatsapp.url} className={styles.visitButton}>
-                  {t('pages.about.visit.whatsapp')}
+            <p className={styles.promoted}>{t('pages.about.promoted')}</p>
+          </div>
+          <figure className={styles.heroPicture}>
+            <ThemeImage src="about-factory.jpg" alt={t('pages.about.imageAlt', { store: brand.name })} ratio={4 / 3} sizes="(min-width: 1024px) 45vw, 100vw" className={s.cover} />
+          </figure>
+        </div>
+      </section>
+
+      <section className={cx(s.section, s.reveal)}>
+        <div className={cx(s.container, styles.story)}>
+          <h2 className={cx(s.title, styles.storyTitle)}>{t('pages.about.story.title')}</h2>
+          <div className={styles.storyBody}>
+            <p>{t('pages.about.story.p1', { store: brand.name })}</p>
+            <p>{t('pages.about.story.p2', { store: brand.name })}</p>
+            <p>{t('pages.about.story.p3', { store: brand.name })}</p>
+            <p>{t('pages.about.story.p4', { store: brand.name })}</p>
+            <Checklist items={claims} />
+          </div>
+        </div>
+      </section>
+
+      <UpClose tinted />
+
+      <section className={cx(s.section, s.reveal)}>
+        <div className={s.container}>
+          <SectionHead title={t('pages.about.range.title', { store: brand.name })} lead={t('pages.about.range.lead')} />
+          <ul className={styles.range} aria-busy={status === 'loading'}>
+            {range.map((c) => (
+              <li key={c.id}>
+                <Link href={c.href} className={styles.rangeCard}>
+                  <span className={styles.rangePicture}>
+                    {c.image ? <Image image={c.image} alt="" ratio={1} sizes="(min-width: 768px) 33vw, 100vw" className={s.cover} /> : <ThemeImage src="category-flour-mill.webp" alt={t('pages.about.range.imageAlt', { store: brand.name })} ratio={1} sizes="(min-width: 768px) 33vw, 100vw" className={s.cover} />}
+                  </span>
+                  <span className={styles.rangeText}>
+                    <span className={styles.rangeName}>{c.name}</span>
+                    {c.lead ? <span className={styles.rangeLead}>{c.lead}</span> : null}
+                    <span className={styles.rangeMore}>
+                      {t('pages.about.range.shop')}
+                      <ArrowRight className={styles.rangeIcon} />
+                    </span>
+                  </span>
                 </Link>
-              ) : null}
-            </div>
-          </div>
-        </section>
-      ) : null}
-      <div className={cx(home.templeBorder, home.templeBorderFlip)} />
-      <section className={styles.closing}>
-        <p className={styles.closingText}>{t('pages.about.closing', { store: store.name })}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
+
+      <SmartFeatures />
+
+      <section className={cx(s.section, s.tinted, s.reveal)}>
+        <div className={s.container}>
+          <SectionHead title={t('pages.about.process.title')} lead={t('pages.about.process.lead')} />
+          <Steps
+            columns={4}
+            steps={[
+              { title: t('pages.about.process.s1.title'), body: t('pages.about.process.s1.body') },
+              { title: t('pages.about.process.s2.title'), body: t('pages.about.process.s2.body') },
+              { title: t('pages.about.process.s3.title'), body: t('pages.about.process.s3.body') },
+              { title: t('pages.about.process.s4.title'), body: t('pages.about.process.s4.body') },
+            ]}
+          />
+        </div>
+      </section>
+
+      <WhyFamilies />
     </Layout>
   )
 }

@@ -51,50 +51,109 @@
     "title": "We can’t find that page",
     "lead": "The link may be old, or the page may have been taken down.",
     "action": "Go to the home page",
-    "search": "Search the shop"
+    "search": "Search the shop",
+    "eyebrow": "404",
+    "browse": "Browse all machines"
   },
   "degraded": {
     "title": "We will be back soon",
     "lead": "The shop is closed for now. Please come back later."
   },
   "about": {
-    "eyebrow": "Our Story",
-    "title": "About {store}",
-    "lead": "Welcome to {store}. Here is a little about who we are and what we do.",
+    "seoTitle": "About Us | {store}",
+    "seoDescription": "{store} manufactures the {store} Atta Chakki — fully automatic domestic flour mills for fresh, hygienic atta at home.",
+    "title": "Engineered for Performance. Made for Your Home.",
+    "lead": "{store} manufactures the {store} Atta Chakki — fully automatic domestic flour mills for fresh, hygienic atta at home.",
+    "view": "View Atta Chakki",
+    "talk": "Talk to Our Team",
+    "promoted": "Promoted and Marketed By Swarnim Enterprises, Maharashtra",
+    "imageAlt": "The {store} team and factory",
     "story": {
-      "eyebrow": "Who we are",
-      "title": "A shop built on",
-      "accent": "care and quality",
-      "first": "We started {store} to bring together pieces we love and believe in. Every item in our shop is chosen with care, so you can shop with confidence.",
-      "second": "We are always adding to our collections, and we are glad to hear what you would like to see next. Thank you for shopping with us."
+      "title": "Milling solutions built on durability, efficiency and precision.",
+      "p1": "At {store}, we are committed to delivering high-performance milling solutions that combine durability, efficiency, and precision. As a leading manufacturer of domestic flour mills, the {store} Atta Chakki brings fresh, hygienic and convenient flour milling into homes.",
+      "p2": "With a strong focus on quality engineering and innovation, {store} products are designed to meet the evolving needs of modern users. Our machines are built using premium-grade materials and advanced manufacturing techniques to ensure long-lasting performance, minimal maintenance, and optimal output.",
+      "p3": "We understand that every family has unique requirements. Whether you grind wheat every day or prefer multi-grain flour, {store} offers an Atta Chakki model that delivers consistent results at home.",
+      "p4": "Our mission is to empower our customers with efficient grinding technology while maintaining superior quality standards. Backed by a dedicated team, stringent quality control, and a customer-first approach, {store} continues to build trust in the milling industry.",
+      "c1": "High-quality, durable Atta Chakki",
+      "c2": "Efficient performance with modern technology",
+      "c3": "Fully automatic domestic flour mills",
+      "c4": "Low-maintenance, energy-efficient designs"
     },
-    "promise": {
-      "eyebrow": "Our Promise",
-      "title": "More than just products",
-      "body": "We want every order to be a pleasure, from the moment you browse to the moment it arrives.",
-      "designs": {
-        "title": "Thoughtful Choices",
-        "body": "Pieces picked for their design and the way they are made."
+    "range": {
+      "title": "The {store} Atta Chakki range",
+      "lead": "Fully automatic domestic flour mills for fresh, hygienic atta at home — browse every model with live prices.",
+      "all": "All machines",
+      "allLead": "Every {store} Atta Chakki model, with live prices.",
+      "shop": "Shop now",
+      "imageAlt": "{store} flour mill range"
+    },
+    "process": {
+      "title": "From raw material to an Atta Chakki you can rely on",
+      "lead": "Quality engineering at every stage — the fundamentals that decide how a mill performs over years of use.",
+      "s1": {
+        "title": "Material Selection",
+        "body": "Premium-grade materials, with stainless-steel blades and bodies on models that need them."
       },
-      "quality": {
-        "title": "Lasting Quality",
-        "body": "Made to be used, enjoyed and kept."
+      "s2": {
+        "title": "Fabrication",
+        "body": "Modern manufacturing techniques for robust cabinets, chambers and cutter assemblies."
       },
-      "service": {
-        "title": "Friendly Service",
-        "body": "Real people ready to help with your order."
+      "s3": {
+        "title": "Quality Control",
+        "body": "Vigilant quality control and safety standards applied across the range."
+      },
+      "s4": {
+        "title": "Final Product",
+        "body": "Designed for long-lasting performance, minimal maintenance and consistent output."
       }
-    },
-    "visit": {
-      "title": "Visit Our Store",
-      "lead": "Come see the collection in person.",
-      "whatsapp": "Chat on WhatsApp"
-    },
-    "closing": "Thank you for choosing {store}."
+    }
   },
   "contact": {
-    "title": "Get in touch",
-    "lead": "Questions about an order or anything else? Write to us and we will reply.",
+    "title": "Contact",
+    "seoTitle": "Contact {store} | {store}",
+    "seoDescription": "Tell us what you need and our team will help you choose the right {store} machine.",
+    "heading": "Let’s Find the Right Atta Chakki for You",
+    "lead": "Tell us what you need and our team will help you choose the right {store} machine.",
+    "logoAlt": "{store} logo",
+    "reach": {
+      "title": "Reach us directly",
+      "lead": "Call, message or email the {store} team — whichever suits you.",
+      "phone": "Phone",
+      "call": "Call",
+      "whatsapp": "WhatsApp",
+      "chat": "Chat",
+      "email": "Email",
+      "write": "Write to us",
+      "website": "Website",
+      "visit": "Visit website",
+      "address": "Address",
+      "maps": "Open in Maps"
+    },
+    "prefer": {
+      "title": "Prefer WhatsApp?",
+      "lead": "Message us the machine you are looking at, or what you need to grind, and our team will reply on WhatsApp.",
+      "action": "WhatsApp Us"
+    },
+    "form": {
+      "title": "Tell us what you need",
+      "lead": "Tell us what you need and we will recommend the right machine with a quote.",
+      "name": "Name",
+      "phone": "Phone number",
+      "email": "Email",
+      "company": "Company / business name",
+      "product": "Product interested in",
+      "notSure": "Not sure yet — help me choose",
+      "message": "Requirement / message",
+      "optional": "Optional",
+      "note": "* Required. We only use your details to respond to this enquiry.",
+      "submit": "Get My Recommendation",
+      "missing": "Please fill in this field.",
+      "doneTitle": "Your enquiry is ready",
+      "doneBody": "Send it to our team on WhatsApp and we will reply with a recommendation and a quote.",
+      "send": "Send on WhatsApp",
+      "edit": "Edit details",
+      "text": "Hello {store}, I'd like a recommendation. Name: {name}. Phone: {phone}. Email: {email}. Company: {company}. Product: {product}. Requirement: {message}"
+    },
     "email": "Email",
     "phone": "Phone",
     "visit": "Visit"
@@ -108,8 +167,8 @@
     "phone": "Or call {phone}."
   },
   "blog": {
-    "eyebrow": "Journal",
-    "title": "From the journal",
+    "eyebrow": "Insights",
+    "title": "Insights",
     "tagged": "Posts about {tag}",
     "all": "All posts",
     "loading": "Loading the posts",
@@ -119,9 +178,71 @@
     "older": "Older posts",
     "loadingPost": "Loading the post",
     "failedPost": "We couldn't load this post",
-    "back": "← Journal",
+    "back": "← Insights",
     "by": "by {author}",
     "tags": "Tags",
     "olderFailed": "We couldn't load older posts. Try again."
+  },
+  "manufacturing": {
+    "seoTitle": "Manufacturing | {store}",
+    "seoDescription": "Every {store} Atta Chakki is manufactured with attention to material quality, motor performance, safety and long-term everyday use.",
+    "title": "Built With Engineering Discipline",
+    "lead": "Every {store} Atta Chakki is manufactured with attention to material quality, motor performance, safety and long-term everyday use.",
+    "demo": "Book a Free Demo",
+    "view": "View Atta Chakki",
+    "stages": {
+      "title": "Five stages, one standard",
+      "s1": {
+        "title": "Material Selection",
+        "body": "Premium-grade materials are chosen for every model, with a stainless-steel grinding chamber and blade cutter."
+      },
+      "s2": {
+        "title": "Fabrication & Assembly",
+        "body": "Modern manufacturing techniques produce robust cabinets, grinding chambers and cutter assemblies."
+      },
+      "s3": {
+        "title": "Quality Checks",
+        "body": "Vigilant quality control and safety standards are applied across the range."
+      },
+      "s4": {
+        "title": "Performance Testing",
+        "body": "Machines are engineered for smooth, even grinding and consistent output, with published motor ratings and power consumption for every model."
+      },
+      "s5": {
+        "title": "Final Inspection",
+        "body": "Stringent quality control carries through to the finished machine — built for long-lasting performance, minimal maintenance and optimal output."
+      }
+    },
+    "lasting": "Built for long-lasting performance",
+    "models": {
+      "title": "Atta Chakki models we build",
+      "lead": "{store}’s own product photography of the Atta Chakki range.",
+      "a1": "{store} 1.5 HP 2-in-1 flour mill",
+      "a2": "{store} 2 HP 2-in-1 flour mill",
+      "a3": "{store} 2 HP Regular Model flour mill",
+      "a4": "{store} Standard Model flour mill",
+      "a5": "{store} Standard Model flour mill, side view",
+      "a6": "{store} Atta Chakki design 1",
+      "a7": "{store} Atta Chakki design 2",
+      "a8": "{store} Atta Chakki design 3"
+    }
+  },
+  "shopAll": {
+    "seoTitle": "Shop All | {store}",
+    "title": "Shop all Atta Chakki",
+    "lead": "Every {store} Atta Chakki model with live prices — book a free home demo before you decide."
+  },
+  "compare": {
+    "seoTitle": "Compare models | {store}",
+    "title": "Compare models",
+    "lead": "Every {store} Atta Chakki model side by side, with live prices and stock.",
+    "model": "Model",
+    "price": "Price",
+    "stock": "Availability",
+    "specs": "Specifications",
+    "view": "View",
+    "loading": "Loading models",
+    "empty": "No models to compare yet.",
+    "scroll": "Scroll sideways to see every model."
   }
 }

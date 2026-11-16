@@ -1,80 +1,77 @@
-import { Link, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { Link, useHead, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { WheatEar } from '../components/Art'
+import { useBrand } from '../components/brand'
+import { cx } from '../components/cx'
+import { FaqTabs } from '../components/interactive/FaqTabs'
 import { Layout } from '../components/Layout'
-import policy from '../styles/policy.module.css'
-import styles from '../styles/faq.module.css'
-
-const linkLine = /^\[(.+)\]\((\/[^)]*)\)$/
-
-type Group = { title: string; items: { question: string; answer: string[]; link: { label: string; href: string } | null }[] }
-
-/**
- * The FAQ from content: blocks split by a blank line, '## ' starting a group, and a question
- * block being 'Q: question', its answer lines, then an optional '[label](address)' line.
- */
-const groupsOf = (text: string): Group[] =>
-  text.split('\n\n').reduce<Group[]>((groups, block) => {
-    if (block.startsWith('## ')) return [...groups, { title: block.slice(3), items: [] }]
-    const [first = '', ...rest] = block.split('\n')
-    const match = linkLine.exec(rest.at(-1) ?? '')
-    const item = { question: first.replace(/^Q:\s*/, ''), answer: match ? rest.slice(0, -1) : rest, link: match ? { label: match[1] ?? '', href: match[2] ?? '/' } : null }
-    const last = groups.at(-1)
-    return last ? [...groups.slice(0, -1), { ...last, items: [...last.items, item] }] : groups
-  }, [])
+import { pill, WhatsAppPill } from '../components/Sections'
+import s from '../styles/sections.module.css'
+import styles from '../styles/pages.module.css'
 
 export const FaqPage = () => {
-  const { store, t } = useStorefront()
-  const body = t('faq.body')
+  const { t } = useStorefront()
+  const brand = useBrand()
+  const store = brand.name
+  useHead({ title: t('faq.seoTitle', { store }), description: t('faq.seoDescription'), canonical: '/faq/' })
+  const groups = [
+    {
+      id: 'buying',
+      name: t('faq.tabs.buying'),
+      items: [
+        { question: t('faq.buying.q1'), answer: t('faq.buying.a1') },
+        { question: t('faq.buying.q2'), answer: t('faq.buying.a2') },
+        { question: t('faq.buying.q3'), answer: t('faq.buying.a3') },
+      ],
+    },
+    {
+      id: 'products',
+      name: t('faq.tabs.products'),
+      items: [
+        { question: t('faq.products.q1'), answer: t('faq.products.a1', { store }) },
+        { question: t('faq.products.q2'), answer: t('faq.products.a2', { store }) },
+        { question: t('faq.products.q3'), answer: t('faq.products.a3', { store }) },
+      ],
+    },
+    {
+      id: 'orders',
+      name: t('faq.tabs.orders'),
+      items: [
+        { question: t('faq.orders.q1'), answer: t('faq.orders.a1') },
+        { question: t('faq.orders.q2'), answer: t('faq.orders.a2') },
+        { question: t('faq.orders.q3'), answer: t('faq.orders.a3') },
+      ],
+    },
+    {
+      id: 'support',
+      name: t('faq.tabs.support'),
+      items: [
+        { question: t('faq.support.q1'), answer: t('faq.support.a1', { store }) },
+        { question: t('faq.support.q2'), answer: t('faq.support.a2') },
+      ],
+    },
+  ]
   return (
     <Layout>
-      <header className={policy.band}>
-        <h1 className={policy.title}>{t('faq.title')}</h1>
-        <span className={policy.rule} />
-      </header>
-      <div className={styles.page}>
-        {groupsOf(body).map((group) => (
-          <section key={group.title}>
-            <h2 className={styles.groupTitle}>{group.title}</h2>
-            <div className={styles.items}>
-              {group.items.map((item) => (
-                <details key={item.question} className={styles.item}>
-                  <summary className={styles.question}>
-                    {item.question}
-                    <svg className={styles.chevron} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path d="M6 9l6 6 6-6" />
-                    </svg>
-                  </summary>
-                  <div className={styles.answer}>
-                    {item.answer.map((line) => (
-                      <p key={line} className={styles.line}>
-                        {line}
-                      </p>
-                    ))}
-                    {item.link ? (
-                      <Link href={item.link.href} className={styles.link}>
-                        {item.link.label}
-                      </Link>
-                    ) : null}
-                  </div>
-                </details>
-              ))}
+      <section className={cx(styles.hero, styles.heroCompact)}>
+        <div className={cx(s.container, styles.contactHead)}>
+          <WheatEar className={styles.faqWheat} />
+          <h1 className={styles.heroTitle}>{t('faq.title')}</h1>
+          <p className={s.lead}>{t('faq.lead')}</p>
+        </div>
+      </section>
+      <section className={s.section}>
+        <div className={cx(s.container, styles.faqWrap)}>
+          <FaqTabs groups={groups} allLabel={t('faq.tabs.all')} />
+          <aside className={styles.faqMore}>
+            <h2 className={styles.preferTitle}>{t('faq.more.title')}</h2>
+            <p className={styles.preferLead}>{t('faq.more.lead')}</p>
+            <div className={s.actions}>
+              <Link href="/contact/" className={pill()}>{t('faq.more.expert')}</Link>
+              <WhatsAppPill tone="light">{t('faq.more.whatsapp')}</WhatsAppPill>
             </div>
-          </section>
-        ))}
-        <section className={styles.more}>
-          <h2 className={styles.moreTitle}>{t('faq.more.title')}</h2>
-          <p className={styles.moreLead}>{t('faq.more.lead')}</p>
-          {store.contactPhone || store.contactEmail ? (
-            <ul className={styles.contacts}>
-              {store.contactPhone ? <li>{store.contactPhone}</li> : null}
-              {store.contactEmail ? <li>{store.contactEmail}</li> : null}
-            </ul>
-          ) : (
-            <Link href="/contact/" className={styles.link}>
-              {t('pages.contact.title')}
-            </Link>
-          )}
-        </section>
-      </div>
+          </aside>
+        </div>
+      </section>
     </Layout>
   )
 }

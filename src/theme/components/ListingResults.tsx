@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Link, useStorefront, type Listing } from '@dripfunnel/storefront-core/theme'
 import { FilterPanel, ListingBar, MoreOnScroll } from './interactive/Filters'
 import { Retry } from './interactive/Retry'
@@ -6,7 +7,7 @@ import { GridPlaceholder, ProductGrid } from './ProductCard'
 import styles from '../styles/shop.module.css'
 
 /** A collection's or a search's products: filters, sort, the grid and its states, and more loading on scroll. */
-export const ListingResults = ({ listing }: { listing: Listing }) => {
+export const ListingResults = ({ listing, list = false, tools }: { listing: Listing; list?: boolean; tools?: ReactNode }) => {
   const { t } = useStorefront()
   return (
     <div className={listing.facets.length || listing.priceBounds ? styles.listingFiltered : styles.listing}>
@@ -14,7 +15,10 @@ export const ListingResults = ({ listing }: { listing: Listing }) => {
       <div className={styles.results}>
         <h2 className={styles.hiddenHeading}>{t('shop.listing.heading')}</h2>
         {listing.status === 'ready' ? (
-          <ListingBar listing={listing} />
+          <div className={styles.barRow}>
+            <ListingBar listing={listing} />
+            {tools}
+          </div>
         ) : null}
         {listing.status === 'loading' ? <GridPlaceholder label={t('shop.listing.loading')} count={6} /> : null}
         {listing.status === 'error' ? (
@@ -35,7 +39,7 @@ export const ListingResults = ({ listing }: { listing: Listing }) => {
             </Notice>
           )
         ) : null}
-        {listing.status === 'ready' ? <ProductGrid products={listing.items} /> : null}
+        {listing.status === 'ready' ? <ProductGrid products={listing.items} list={list} /> : null}
         <MoreOnScroll listing={listing} />
       </div>
     </div>

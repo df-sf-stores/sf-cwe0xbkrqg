@@ -88,7 +88,9 @@
       "sendHintExpiry": "We email it that morning. Leave it empty to send it now. It can be used for {months, plural, one {# month} other {# months}} after it's sent.",
       "add": "Add gift card to cart",
       "needed": "Add the recipient's name and email to add this gift card."
-    }
+    },
+    "ask": "WhatsApp about this product",
+    "askText": "Hello {store}, I'd like to know more about the {name}."
   },
   "cart": {
     "title": "Your cart",
@@ -295,5 +297,10 @@
     "view": "View product",
     "remove": "Remove",
     "removeLabel": "Remove {name} from your wishlist"
+  },
+  "view": {
+    "label": "Layout",
+    "grid": "Grid view",
+    "list": "List view"
   }
 }

@@ -1,200 +1,239 @@
+/* The home page's hero: the picture above its words on phones; the words in a card over the picture from 1024px. */
+
 .hero {
   position: relative;
-  overflow: hidden;
-  background: var(--deep);
+  background: var(--soft);
   touch-action: pan-y;
 }
 
-/* Slides share one grid cell; position classes slide them in from either side. */
-.track {
-  display: grid;
+.frame {
+  position: relative;
+  box-sizing: border-box;
+  width: min(100%, 1440px);
+  margin-inline: auto;
 }
 
-.slide {
-  grid-area: 1 / 1;
-  transition: transform 0.6s ease;
+.pictures {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2048 / 768;
+  background: linear-gradient(160deg, #f6f3ef, #ece4da);
 }
 
-.current {
-  transform: translateX(0);
+.picture {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.7s ease, transform 1.2s ease;
 }
 
-.before {
-  transform: translateX(-100%);
+.shown {
+  opacity: 1;
+  transform: none;
 }
 
-.after {
-  transform: translateX(100%);
+.waiting {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
 }
 
-.still {
-  transition: none;
-}
-
-.slideLink {
+.pictureLink {
   display: block;
   width: 100%;
-  /* The screen's height less the header and menu; the banner fits inside rather than being cropped (art.module.css). */
-  max-height: calc(100svh - 7.5rem);
-  aspect-ratio: 16 / 9;
+  height: 100%;
 }
 
-.slideLink:focus-visible {
-  outline: 2px solid var(--taupe);
-  outline-offset: -4px;
+.pictureLink:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
 }
 
-.hidden {
-  position: absolute;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-  clip-path: inset(50%);
-  white-space: nowrap;
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .arrow {
   position: absolute;
+  z-index: 2;
   top: 50%;
   display: none;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
+  width: 48px;
+  height: 48px;
+  place-items: center;
   padding: 0;
-  border: 1px solid rgb(179 165 147 / 60%);
+  border: 0;
   border-radius: 999px;
-  background: rgb(0 0 0 / 25%);
-  color: #fff;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 10px 24px -12px rgb(19 22 26 / 50%);
+  color: var(--ink);
   cursor: pointer;
   transform: translateY(-50%);
-  backdrop-filter: blur(4px);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .arrow:hover {
-  background: rgb(0 0 0 / 45%);
+  background: var(--accent);
+  color: #fff;
 }
 
-.arrow svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
+.arrow:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .previous {
-  left: 12px;
+  left: 16px;
 }
 
 .next {
-  right: 12px;
+  right: 16px;
+}
+
+.copy {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 16px 26px;
+  background: var(--surface);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(22px, 2.4vw + 12px, 40px);
+  line-height: 1.1;
+  text-wrap: balance;
+  animation: copyIn 0.5s ease both;
+}
+
+.body {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@keyframes copyIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
 }
 
 .dots {
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
   display: flex;
-  transform: translateX(-50%);
+  gap: 4px;
 }
 
-/* A 24px tap target (WCAG 2.2 target size) around the small visible pill. */
 .dot {
-  display: flex;
-  min-width: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
+  position: relative;
+  width: 28px;
+  height: 28px;
+  padding: 0;
   border: 0;
-  background: none;
+  background: transparent;
   cursor: pointer;
 }
 
-.dot::before {
-  width: 12px;
-  height: 6px;
+.dot::after {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  width: 16px;
+  height: 4px;
   border-radius: 999px;
-  background: rgb(255 255 255 / 60%);
+  background: var(--line);
   content: '';
+  transition: background-color 0.3s ease;
 }
 
-.dot:hover::before {
-  background: #fff;
+.dotOn::after {
+  background: var(--accent);
 }
 
-.dotOn::before {
-  width: 32px;
-  background: var(--taupe);
+.dot:focus-visible,
+.toggle:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+  border-radius: 8px;
 }
 
 .toggle {
-  position: absolute;
-  bottom: 4px;
-  left: 12px;
-  display: flex;
-  width: 32px;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
   padding: 0;
-  border: 1px solid rgb(179 165 147 / 60%);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgb(0 0 0 / 25%);
-  color: #fff;
+  background: var(--surface);
+  color: var(--ink);
   cursor: pointer;
-}
-
-.toggle:hover {
-  background: rgb(0 0 0 / 45%);
 }
 
 .toggle svg {
   width: 14px;
   height: 14px;
-  fill: currentcolor;
+  fill: none;
   stroke: currentcolor;
+  stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2;
-}
-
-.arrow:focus-visible,
-.toggle:focus-visible,
-.dot:focus-visible {
-  outline: 2px solid var(--taupe);
-  outline-offset: 2px;
-}
-
-@media (min-width: 640px) {
-  .arrow {
-    display: flex;
-  }
+  stroke-width: 2.4;
 }
 
 @media (min-width: 768px) {
-  .previous {
-    left: 24px;
+  .arrow {
+    display: grid;
   }
 
-  .next {
-    right: 24px;
-  }
-
-  .dots {
-    bottom: 12px;
-  }
-
-  .toggle {
-    bottom: 12px;
-    left: 24px;
+  .copy {
+    padding: 28px 24px 32px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .slide {
-    transition: none;
+/* Desktop: the banner keeps its whole picture (its own words are part of the art); ours sit in a strip below it. */
+@media (min-width: 1024px) {
+  .copy {
+    display: grid;
+    box-sizing: border-box;
+    width: min(100%, 1280px);
+    align-items: center;
+    gap: 8px 40px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    margin-inline: auto;
+    padding: 28px 24px 32px;
+    background: transparent;
+  }
+
+  .eyebrow {
+    grid-row: span 2;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .controls {
+    grid-column: 1 / -1;
   }
 }

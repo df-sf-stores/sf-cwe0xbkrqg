@@ -258,8 +258,17 @@
 .grid,
 .gridWide {
   display: grid;
-  gap: 24px 14px;
+  gap: 20px 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gridList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -274,101 +283,175 @@
   height: 100%;
   box-sizing: border-box;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 8px 14px;
-  border: 1px solid rgb(179 165 147 / 25%);
-  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
   background: var(--surface);
-  box-shadow: 0 1px 2px rgb(38 34 31 / 6%);
-  text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 1px 2px rgb(19 22 26 / 5%);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .card:hover {
-  border-color: rgb(179 165 147 / 60%);
-  box-shadow: 0 22px 40px -24px rgb(47 43 40 / 55%);
+  border-color: rgb(199 68 21 / 35%);
+  box-shadow: 0 24px 44px -26px rgb(63 33 22 / 45%);
   transform: translateY(-4px);
 }
 
-.cardLink {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  color: var(--ink);
-  text-decoration: none;
+.gridList .card {
+  flex-direction: row;
 }
 
-.cardLink:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
-}
-
-/* The arched frame echoes a temple doorway. */
 .cardPicture {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--soft);
+}
+
+.gridList .cardPicture {
+  width: 38%;
+  max-width: 220px;
+  flex: none;
+}
+
+.cardPictureLink {
+  display: block;
   width: 100%;
-  box-sizing: border-box;
-  aspect-ratio: 4 / 5;
-  border: 1px solid rgb(179 165 147 / 45%);
-  border-radius: 999px 999px 12px 12px;
-  background: var(--surface);
+  height: 100%;
 }
 
-.card:hover .cardPicture {
-  border-color: var(--taupe);
+.cardPictureLink:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: -3px;
 }
 
-/* A photo that fails to load shows as a soft panel, not its alt text; the name sits right below. */
+/* A photo that fails to load shows as a soft panel, not its alt text. */
 .cardImage {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   background-color: var(--soft);
   color: transparent;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
 }
 
 .noPicture {
-  position: absolute;
-  inset: auto 10px 10px;
-  color: var(--ink-soft);
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--muted);
   font-size: 12px;
 }
 
-.badge,
-.soldOut {
+.cardBadges {
   position: absolute;
-  top: 18%;
+  top: 10px;
   left: 10px;
-  padding: 3px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.offBadge,
+.badge {
+  display: inline-flex;
+  padding: 4px 10px;
   border-radius: 999px;
   background: var(--accent);
   color: var(--accent-ink);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
-.soldOut {
-  top: auto;
+.badge {
+  background: var(--deep);
+}
+
+.cardTools {
+  position: absolute;
+  top: 10px;
   right: 10px;
-  bottom: 10px;
-  left: auto;
-  background: var(--ink);
-  color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTool {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 92%);
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cardTool:hover,
+.cardToolOn {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cardToolOn .cardToolIcon {
+  fill: currentcolor;
+}
+
+.cardTool:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.cardToolIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.cardBody {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 14px 16px;
+}
+
+.stockBadge {
+  display: inline-flex;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.stockIn {
+  background: rgb(0 165 68 / 12%);
+  color: #00702e;
+}
+
+.stockOut {
+  background: #ffe2e2;
+  color: #9f0712;
 }
 
 .cardName {
   display: -webkit-box;
   overflow: hidden;
   margin: 0;
-  padding-inline: 4px;
   font-family: var(--heading-font);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: var(--heading-weight);
   line-height: 1.3;
   overflow-wrap: anywhere;
@@ -376,53 +459,17 @@
   -webkit-line-clamp: 2;
 }
 
-/* A small taupe diamond between two fading rules. */
-.cardRule {
-  width: min(100%, 112px);
-  height: 8px;
-  background:
-    conic-gradient(from 45deg at 50% 50%, var(--taupe) 90deg, transparent 0) center / 6px 6px no-repeat,
-    linear-gradient(to right, transparent, var(--taupe) 42%, transparent 42% 58%, var(--taupe) 58%, transparent) center / 100% 1px no-repeat;
-}
-
-.cardMore {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: auto;
-  padding-top: 4px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+.cardNameLink {
+  color: var(--ink);
   text-decoration: none;
-  text-transform: uppercase;
 }
 
-.card:hover .cardMore,
-.card:hover .cardName {
+.cardNameLink:hover {
   color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
-.cardMoreIcon {
-  width: 12px;
-  height: 12px;
-  fill: none;
-  stroke: currentcolor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-  transition: transform 0.3s ease;
-}
-
-.card:hover .cardMoreIcon {
-  transform: translateX(2px);
-}
-
-.cardMore:focus-visible {
-  outline: 2px solid var(--focus);
+.cardNameLink:focus-visible {
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -430,26 +477,25 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: center;
   gap: 4px;
   margin: 0;
-  color: var(--accent);
-  font-size: 15px;
+  color: var(--ink);
 }
 
 .from {
+  font-size: 13px;
   font-weight: 600;
 }
 
 .price {
   display: inline-block;
-  --df-price-size: 16px;
-  --df-sealed-color: var(--accent);
+  --df-price-size: 18px;
+  --df-sealed-color: var(--ink);
   --df-sealed-size: 12px;
 }
 
 .price::part(amount) {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .price::part(was) {
@@ -460,21 +506,184 @@
 
 .price::part(tax) {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
+}
+
+.cardAction {
+  display: inline-flex;
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  padding: 0 14px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cardAction:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.cardAction:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.cardActionOff,
+.cardActionOff:hover {
+  border-color: var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.gridList .cardAction {
+  width: auto;
+  align-self: flex-start;
+}
+
+.cardActionIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s ease;
+}
+
+.cardAction:hover .cardActionIcon {
+  transform: translateX(3px);
 }
 
 .skeletonPicture {
-  aspect-ratio: 4 / 5;
-  border-radius: 999px 999px 8px 8px;
-  background: var(--soft);
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  background: linear-gradient(100deg, var(--soft) 40%, var(--tint) 50%, var(--soft) 60%) 0 0 / 300% 100%;
+  animation: shimmer 1.4s linear infinite;
 }
 
-.skeletonLine {
-  width: 60%;
+.skeletonLine,
+.skeletonLineShort {
+  width: 70%;
   height: 14px;
   margin-top: 12px;
   border-radius: 6px;
   background: var(--soft);
+}
+
+.skeletonLineShort {
+  width: 40%;
+  margin-top: 8px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -300% 0;
+  }
+}
+
+.quickBackdrop {
+  position: fixed;
+  z-index: 95;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(19 22 26 / 55%);
+  animation: fadeIn 0.2s ease;
+}
+
+.quick {
+  position: relative;
+  display: grid;
+  width: min(100%, 760px);
+  max-height: calc(100vh - 32px);
+  box-sizing: border-box;
+  overflow: auto;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 30px 80px -20px rgb(19 22 26 / 50%);
+  animation: rise 0.25s ease;
+}
+
+.quick:focus {
+  outline: none;
+}
+
+.quickPicture {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--soft);
+  aspect-ratio: 1 / 1;
+}
+
+.quickInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.quickName {
+  margin: 0;
+  padding-right: 40px;
+  font-family: var(--heading-font);
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.quickPrice {
+  --df-price-size: 24px;
+  --df-sealed-color: var(--ink);
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.quickClose {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.quickClose:focus-visible {
+  outline: 3px solid var(--focus);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
 }
 
 .notice {
@@ -517,9 +726,9 @@
   align-items: center;
   justify-content: center;
   align-self: flex-start;
-  padding: 0 22px;
+  padding: 0 24px;
   border: 1px solid var(--accent);
-  border-radius: var(--button-radius);
+  border-radius: 999px;
   background: var(--accent);
   color: var(--accent-ink);
   font: inherit;
@@ -529,9 +738,9 @@
 }
 
 .secondary {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--ink);
+  border-color: var(--accent);
+  background: transparent;
+  color: var(--accent);
 }
 
 .secondary:disabled {
@@ -729,4 +938,103 @@
 
 .priceTo {
   flex: none;
+}
+
+.barRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.barRow > :first-child {
+  min-width: 0;
+  flex: 1;
+}
+
+.viewToggle {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.viewButton {
+  display: grid;
+  width: 44px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.viewButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.viewOn {
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.viewButton:focus-visible {
+  outline: 3px solid var(--focus);
+}
+
+.primary:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.secondary:hover {
+  background: var(--tint);
+}
+
+@media (min-width: 640px) {
+  .quick {
+    grid-template-columns: 1fr 1fr;
+    padding: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid,
+  .gridWide,
+  .listing .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .listingFiltered .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Phones and tablets: the filters open as a sheet from the foot of the screen, above the tab bar. */
+@media (max-width: 899px) {
+  .filterBodyOpen {
+    position: fixed;
+    z-index: 94;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-height: 75vh;
+    box-sizing: border-box;
+    overflow: auto;
+    padding: 20px 16px 96px;
+    border-radius: 22px 22px 0 0;
+    background: var(--surface);
+    box-shadow: 0 -24px 60px -20px rgb(19 22 26 / 45%);
+    animation: rise 0.25s ease;
+  }
+
+  .filterToggle {
+    position: relative;
+    z-index: 95;
+  }
 }

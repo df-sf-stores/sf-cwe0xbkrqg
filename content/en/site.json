@@ -1,0 +1,139 @@
+{
+  "skip": "Skip to content",
+  "brandAlt": "{store} Atta Chakki logo",
+  "bar": {
+    "label": "Store highlights",
+    "demo": "Free Home Demo",
+    "shipping": "Free Shipping up to 200 KM",
+    "secure": "Secure Shopping",
+    "call": "Call {phone}",
+    "compare": "Compare models"
+  },
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "chakki": "Atta Chakki",
+    "about": "About",
+    "shop": "Shop All",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "open": "Open menu",
+    "close": "Close menu",
+    "more": "Show {item} links"
+  },
+  "mega": {
+    "category": "Shop by category",
+    "subType": "Shop by sub-type",
+    "viewAll": "View all",
+    "browse": "Browse all machines",
+    "compare": "Compare models",
+    "outOfStock": "Out of Stock",
+    "promoTitle": "Not sure which machine?",
+    "promoBody": "Tell us what you grind and how much. Our team will recommend a model and send a quote.",
+    "promoAction": "Contact"
+  },
+  "tools": {
+    "search": "Search",
+    "searchPrompt": "Search products...",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "wishlistCount": "Wishlist, {count, plural, one {# item} other {# items}}",
+    "cart": "Cart",
+    "cartCount": "Cart, {count, plural, one {# item} other {# items}}",
+    "shop": "Shop",
+    "home": "Home"
+  },
+  "tabs": {
+    "label": "Quick links"
+  },
+  "footer": {
+    "iso": "ISO 9001:2015 Certified",
+    "isoAlt": "ISO 9001:2015 certified badge",
+    "tagline": "Fresh atta. Made right at home.",
+    "about": "{store} Atta Chakki — fully automatic domestic flour mills for fresh, hygienic atta at home.",
+    "shop": "Shop",
+    "company": "Company",
+    "customer": "Customer",
+    "contact": "Contact",
+    "home": "Home",
+    "chakki": "Atta Chakki",
+    "compare": "Compare models",
+    "about2": "About",
+    "manufacturing": "Manufacturing",
+    "insights": "Insights",
+    "faq": "FAQ",
+    "contactLink": "Contact",
+    "account": "My account",
+    "orders": "My orders",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "support": "Support",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "address": "Address",
+    "qr": "Scan to visit our website",
+    "demo": "Book a Free Demo",
+    "promoted": "Promoted and Marketed By Swarnim Enterprises, Maharashtra",
+    "rights": "© 2026 {store}, {city}, {region}. All rights reserved.",
+    "dripfunnel": "DripFunnel",
+    "dripfunnelLink": "Powered by DripFunnel (opens dripfunnel.com)"
+  },
+  "chat": "Chat with {store}",
+  "links": {
+    "tel": "tel:{phone}",
+    "whatsapp": "https://wa.me/{phone}?text=Hello%20{store}%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Atta%20Chakki.",
+    "whatsappText": "https://wa.me/{phone}?text={text}",
+    "website": "https://www.{site}.in/",
+    "websiteLabel": "www.{site}.in",
+    "fallbackEmail": "info@{site}.in",
+    "secondEmail": "millnexattachakki5@gmail.com",
+    "maps": "https://www.google.com/maps/search/?api=1&query={address}",
+    "dripfunnel": "https://www.dripfunnel.com/in/"
+  },
+  "cta": {
+    "title": "Ready for fresh atta at home?",
+    "body": "Book a free home demo — our team will visit your home and show you the {store} Atta Chakki in action.",
+    "demo": "Book a Free Demo",
+    "whatsapp": "WhatsApp"
+  },
+  "demo": {
+    "title": "Book a Free Demo",
+    "lead": "Share your name, phone number and area — our team will get in touch to fix a convenient time.",
+    "close": "Close",
+    "name": "Name",
+    "phone": "Phone",
+    "area": "Area / City",
+    "product": "Product",
+    "notSure": "Not sure yet — help me choose",
+    "required": "Required",
+    "missing": "Please fill in this field.",
+    "submit": "Book a Free Demo",
+    "doneTitle": "Almost done",
+    "doneBody": "Send your booking to our team on WhatsApp and we will get in touch to fix a convenient time.",
+    "send": "Send on WhatsApp",
+    "edit": "Edit details",
+    "message": "Hello {store}, I'd like to book a free home demo. Name: {name}. Phone: {phone}. Area: {area}. Product: {product}.",
+    "codeLabel": "Country code"
+  },
+  "card": {
+    "quick": "Quick view",
+    "add": "Add to cart",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "off": "{percent}% OFF",
+    "view": "View product",
+    "close": "Close",
+    "noPicture": "No picture yet"
+  },
+  "slider": {
+    "previous": "Previous",
+    "next": "Next",
+    "goTo": "Show item {n}"
+  },
+  "lightbox": {
+    "open": "Open photo: {caption}",
+    "close": "Close photo"
+  },
+  "phone": "+{code} {first} {second}"
+}

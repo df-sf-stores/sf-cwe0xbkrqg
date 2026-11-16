@@ -5,7 +5,10 @@ import { Options } from '../components/interactive/Options'
 import { Retry } from '../components/interactive/Retry'
 import { Layout } from '../components/Layout'
 import { Notice } from '../components/Notice'
-import { ProductGrid } from '../components/ProductCard'
+import { percentOff, ProductGrid } from '../components/ProductCard'
+import { useBrand } from '../components/brand'
+import { DemoPill } from '../components/Sections'
+import { ChatIcon, HomeIcon, TruckIcon } from '../components/Icons'
 import shop from '../styles/shop.module.css'
 import story from '../styles/aplus.module.css'
 import styles from '../styles/product.module.css'
@@ -13,6 +16,7 @@ import styles from '../styles/product.module.css'
 export const ProductPage = () => {
   const { store, locale, t } = useStorefront()
   const page = useProduct()
+  const brand = useBrand()
   const product = page.product
   if (page.status === 'missing' || page.status === 'error' || !product) {
     return (
@@ -41,6 +45,7 @@ export const ProductPage = () => {
     )
   }
   const firstMissing = page.missing[0]
+  const off = percentOff(page.price, page.compareAt)
   const specs = product.specs.filter((s) => s.versionId === null || s.versionId === page.version?.id)
   return (
     <Layout>
@@ -55,6 +60,7 @@ export const ProductPage = () => {
               <p className={styles.price}>
                 {page.from ? <span className={styles.from}>{t('shop.card.from')}</span> : null}
                 <Price money={page.price} compareAt={page.compareAt} includesTax={store.pricesIncludeTax} locale={locale} t={t} className={styles.priceTag} />
+                {off ? <span className={shop.offBadge}>{t('site.card.off', { percent: off })}</span> : null}
               </p>
             ) : null}
             <Options page={page} />
@@ -63,6 +69,27 @@ export const ProductPage = () => {
               {firstMissing ? t('shop.product.choose', { option: firstMissing.name }) : page.stock?.inStock ? t('shop.product.inStock') : t('shop.product.outOfStock')}
             </p>
             <BuyButtons page={page} />
+            <div className={styles.enquire}>
+              <DemoPill tone="outline" product={product.name}>
+                {t('site.demo.title')}
+              </DemoPill>
+              {brand.hasPhone ? (
+                <Link href={brand.chat(t('shop.product.askText', { store: brand.name, name: product.name }))} className={styles.ask}>
+                  <ChatIcon className={styles.askIcon} />
+                  {t('shop.product.ask')}
+                </Link>
+              ) : null}
+            </div>
+            <ul className={styles.chips}>
+              <li className={styles.chip}>
+                <HomeIcon className={styles.chipIcon} />
+                {t('home.flagship.chipDemo')}
+              </li>
+              <li className={styles.chip}>
+                <TruckIcon className={styles.chipIcon} />
+                {t('home.flagship.chipShipping')}
+              </li>
+            </ul>
             {product.highlights.length ? (
               <ul className={styles.highlights}>
                 {product.highlights.map((h) => (
@@ -81,7 +108,7 @@ export const ProductPage = () => {
                 </section>
               ) : null}
               {specs.length ? (
-                <details className={styles.section}>
+                <details className={styles.section} open>
                   <summary className={styles.summary}>{t('shop.product.specs')}</summary>
                   <dl className={styles.specs}>
                     {specs.map((s) => (

@@ -1,0 +1,634 @@
+/* About, Manufacturing, Contact, FAQ and Compare. */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0 56px;
+  background: radial-gradient(90% 120% at 100% 0%, var(--tint) 0%, var(--bg) 60%);
+}
+
+.heroCompact {
+  padding: 48px 0 40px;
+  text-align: center;
+}
+
+.heroGrid {
+  display: grid;
+  align-items: center;
+  gap: 36px;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: clamp(32px, 3.4vw + 16px, 60px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.isoLine {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 8px 16px 8px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.isoBadge {
+  display: block;
+  width: 40px;
+  height: auto;
+}
+
+.promoted {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.heroPicture {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 28px;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 40px 70px -40px rgb(63 33 22 / 55%);
+}
+
+.heroPictureSquare {
+  background: var(--surface);
+  aspect-ratio: 1 / 1;
+}
+
+.heroPictureSquare img {
+  object-fit: contain;
+}
+
+.heroWheat {
+  position: absolute;
+  right: -20px;
+  bottom: -10px;
+  width: 160px;
+  height: auto;
+  opacity: 0.9;
+}
+
+/* About's story */
+
+.story {
+  display: grid;
+  gap: 24px;
+}
+
+.storyTitle {
+  max-width: 560px;
+}
+
+.storyBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--ink-soft);
+  font-size: 17px;
+}
+
+.storyBody p {
+  margin: 0;
+}
+
+/* The range */
+
+.range {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rangeCard {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rangeCard:hover {
+  box-shadow: 0 24px 50px -30px rgb(63 33 22 / 50%);
+  transform: translateY(-4px);
+}
+
+.rangeCard:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.rangePicture {
+  display: block;
+  overflow: hidden;
+  background: var(--soft);
+  aspect-ratio: 1 / 1;
+}
+
+.rangeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+}
+
+.rangeName {
+  font-family: var(--display-font);
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.rangeLead {
+  color: var(--muted);
+}
+
+.rangeMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.rangeIcon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+
+.rangeCard:hover .rangeIcon,
+.reachCard:hover .rangeIcon {
+  transform: translateX(3px);
+}
+
+/* Contact */
+
+.contactHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 860px;
+}
+
+.contactLogo {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
+.contactGrid {
+  display: grid;
+  align-items: start;
+  gap: 40px;
+}
+
+.contactSide {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reach {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.reachCard {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reachCard:hover {
+  border-color: rgb(199 68 21 / 45%);
+  box-shadow: 0 18px 36px -26px rgb(63 33 22 / 50%);
+}
+
+.reachCard:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.reachIcon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--tint);
+  color: var(--accent);
+}
+
+.reachIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.reachText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reachLabel {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.reachValue {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.reachAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.prefer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px;
+  border-radius: 22px;
+  background: var(--tint);
+}
+
+.preferTitle {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.preferLead {
+  margin: 0 0 6px;
+  color: var(--muted);
+}
+
+/* FAQ */
+
+.faqWheat {
+  width: 84px;
+  height: auto;
+}
+
+.faqWrap {
+  display: grid;
+  align-items: start;
+  gap: 32px;
+}
+
+.faq {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.faqTabs {
+  display: flex;
+  gap: 8px;
+  margin: 0 -16px;
+  padding: 2px 16px 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.faqTab {
+  min-height: 44px;
+  flex: none;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.faqTab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.faqTabOn,
+.faqTabOn:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.faqTab:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.faqPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.faqGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faqGroupTitle {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.faqItem {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faqItem[open] {
+  border-color: rgb(199 68 21 / 40%);
+  box-shadow: 0 18px 36px -28px rgb(63 33 22 / 50%);
+}
+
+.faqQuestion {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+
+.faqQuestion:focus-visible {
+  border-radius: 16px;
+  outline: 3px solid var(--focus);
+}
+
+.faqChevron {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--accent);
+  transition: transform 0.25s ease;
+}
+
+.faqItem[open] .faqChevron {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  margin: 0;
+  padding: 0 18px 18px;
+  color: var(--muted);
+}
+
+.faqMore {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px;
+  border-radius: 24px;
+  background: var(--deep);
+  color: #fff;
+}
+
+.faqMore .preferLead {
+  color: rgb(255 255 255 / 80%);
+}
+
+/* Compare */
+
+.scrollHint {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.compareScroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.compareScroll:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.compare {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.compare th,
+.compare td {
+  min-width: 180px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.compare tbody th {
+  position: sticky;
+  z-index: 1;
+  left: 0;
+  min-width: 110px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.compare tr:last-child th,
+.compare tr:last-child td {
+  border-bottom: 0;
+}
+
+.compareCorner {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.compareHead {
+  vertical-align: bottom;
+}
+
+.compareModel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.compareModel:hover {
+  color: var(--accent);
+}
+
+.compareModel:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.compareThumb {
+  display: block;
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.compareThumb img {
+  object-fit: contain;
+}
+
+.comparePrice {
+  display: block;
+  margin-bottom: 6px;
+  --df-price-size: 18px;
+  --df-sealed-color: var(--ink);
+}
+
+.compareActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 64px 0 80px;
+  }
+
+  .heroCompact {
+    padding: 72px 0 56px;
+  }
+
+  .reach {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .range {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .rangeCard {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .faqTabs {
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    gap: 64px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .story {
+    gap: 64px;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+
+  .contactGrid {
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .faqWrap {
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) 340px;
+  }
+
+  .faqMore {
+    position: sticky;
+    top: 110px;
+  }
+}

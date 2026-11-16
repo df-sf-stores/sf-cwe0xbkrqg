@@ -1,6 +1,6 @@
 import { Breadcrumbs, Link, useCollection, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { Layout } from '../components/Layout'
-import { ListingResults } from '../components/ListingResults'
+import { ShopListing } from '../components/interactive/ShopListing'
 import { Notice } from '../components/Notice'
 import { Retry } from '../components/interactive/Retry'
 import styles from '../styles/shop.module.css'
@@ -30,7 +30,7 @@ export const CollectionPage = () => {
               <h1 className={styles.title}>{name ?? t('shop.collection.loading')}</h1>
               {lead ? <p className={styles.lead}>{lead}</p> : null}
             </header>
-            <ListingResults listing={page} />
+            <ShopListing listing={page} />
           </>
         )}
       </section>
