@@ -63,7 +63,6 @@ export const ContactPage = () => {
                   <Card icon={<ChatIcon />} label={t('pages.contact.reach.whatsapp')} value={brand.phone} action={t('pages.contact.reach.chat')} href={brand.whatsapp} />
                 </>
               ) : null}
-              <Card icon={<MailIcon />} label={t('pages.contact.reach.email')} value={brand.email} />
               <Card icon={<MailIcon />} label={t('pages.contact.reach.email')} value={brand.secondEmail} />
               <Card icon={<GlobeIcon />} label={t('pages.contact.reach.website')} value={brand.websiteLabel} action={t('pages.contact.reach.visit')} href={brand.website} />
               {brand.address ? <Card icon={<PinIcon />} label={t('pages.contact.reach.address')} value={brand.address} action={t('pages.contact.reach.maps')} href={brand.maps} /> : null}
